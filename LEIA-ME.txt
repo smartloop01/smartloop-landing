@@ -1,0 +1,69 @@
+SMARTLOOP LANDING PAGE - ARQUIVOS SEPARADOS
+
+Use esta pasta para trabalhar no VS Code:
+C:\Users\SmarLoop\Documents\Pagina SmartLoop\SmartLoop_Landing_Separado
+
+ARQUIVOS
+
+main.py
+- Inicia o site.
+- Rode sempre este arquivo.
+- Normalmente voce nao precisa editar muito este arquivo.
+
+landing.py
+- Conteudo principal da landing page.
+- Aqui ficam as secoes: Hero, Dashboard, Sobre, Portfolio, Numeros, Diferenciais, Depoimentos, CTA e Rodape.
+- Edite este arquivo quando quiser mudar textos, ordem das secoes ou layout.
+
+controls.py
+- Componentes reaproveitaveis.
+- Aqui ficam botoes, cards glassmorphism e titulos de secao.
+- Edite se quiser mudar o estilo dos botoes/cards em todo o site.
+
+theme.py
+- Cores, estilos de texto, sombras e gradientes.
+- Edite este arquivo para trocar a identidade visual do site.
+
+config.py
+- Projetos, depoimentos, email, WhatsApp e redes sociais.
+- Edite este arquivo para trocar links e informacoes sem mexer no layout.
+
+logo-smartloop.jpg
+- Logo usado na landing page.
+
+requirements.txt
+- Dependencias do projeto.
+
+COMO RODAR NORMAL
+
+1. Abra esta pasta no VS Code:
+   C:\Users\SmarLoop\Documents\Pagina SmartLoop\SmartLoop_Landing_Separado
+
+2. Abra o terminal do VS Code.
+
+3. Rode:
+   pip install -r requirements.txt
+
+4. Depois rode:
+   python main.py
+
+COMO RODAR VENDO AS MUDANCAS AO SALVAR
+
+Use este comando no terminal:
+   flet run -w -d -r -p 8088 -a . main.py
+
+Ou clique duas vezes no arquivo:
+   rodar_em_tempo_real.bat
+
+Depois abra:
+   http://127.0.0.1:8088
+
+Quando editar algum arquivo, salve com CTRL + S.
+O Flet vai recarregar a aplicacao automaticamente.
+Se o navegador nao atualizar sozinho, aperte F5.
+
+IMPORTANTE
+
+Nao rode landing.py, controls.py, theme.py ou config.py diretamente.
+O arquivo certo para iniciar o site e sempre:
+python main.py
