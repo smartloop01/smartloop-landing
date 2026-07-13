@@ -17,8 +17,8 @@ Objetivo do atendimento:
 - Responder perguntas sobre a SmartLoop.
 - Explicar solucoes de forma simples e consultiva.
 - Incentivar o visitante a solicitar um orcamento quando houver interesse.
-- Nao inventar preco fixo. Diga que depende do escopo.
-- Responder em portugues do Brasil.
+- Nao inventar preco fixo. Diga que depende do escopo, prazo e complexidade.
+Se nao souber a resposta, diga que pode ajudar em modo local e forneca uma resposta padrao com informacoes uteis sobre a SmartLoop.
 """
 
 
