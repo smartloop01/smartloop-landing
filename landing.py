@@ -405,7 +405,7 @@ class LandingPage:
         content = ft.ResponsiveRow(
             [
                 ft.Container(
-                    col={"xs": 12, "md": 6},
+                   
                     content=ft.Column(
                         [
                             section_title("Sobre", "A SmartLoop pensa Tecnologia como Resultado"),

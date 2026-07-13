@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 import flet as ft
 
@@ -6,10 +7,14 @@ import theme
 from landing import LandingPage
 
 
+PROJECT_DIR = Path(__file__).resolve().parent
+
+
 def main(page: ft.Page):
     page.title = "SmartLoop | Tecnologia Inteligente"
+    page.window.icon = "iniciosite.png"
     page.theme_mode = ft.ThemeMode.DARK
-    page.bgcolor = theme.BG
+    page.bgcolor = "#0950C2"
     page.padding = 0
     page.spacing = 0
     page.scroll = ft.ScrollMode.AUTO
@@ -29,4 +34,10 @@ def main(page: ft.Page):
 if __name__ == "__main__":
     port = int(os.getenv("PORT", "8088"))
     host = os.getenv("HOST", "0.0.0.0" if os.getenv("PORT") else "127.0.0.1")
-    ft.run(main, assets_dir=".", host=host, port=port, view=ft.AppView.WEB_BROWSER)
+    ft.run(
+        main,
+        assets_dir=str(PROJECT_DIR),
+        host=host,
+        port=port,
+        view=ft.AppView.WEB_BROWSER,
+    )
