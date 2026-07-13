@@ -690,14 +690,14 @@ class LandingPage:
         page_width = self.page.width or 390
         compact_agent = page_width < 1200
         panel_width = 300 if compact_agent else 520
-        bubble_width = panel_width - 56
-        wrapped_text = "\n".join(textwrap.wrap(text, width=32 if compact_agent else 54))
+        bubble_width = panel_width - 80
+        wrapped_text = "\n".join(textwrap.wrap(text, width=28 if compact_agent else 54))
         return ft.Container(
             width=panel_width - 20,
             alignment=ft.Alignment(1, 0) if is_user else ft.Alignment(-1, 0),
             content=ft.Container(
                     width=bubble_width,
-                    padding=12,
+                    padding=8,
                     border_radius=8,
                     bgcolor=theme.GREEN if is_user else ft.Colors.with_opacity(0.10, theme.WHITE),
                     border=None if is_user else ft.Border.all(1, ft.Colors.with_opacity(0.16, theme.WHITE)),
