@@ -54,7 +54,7 @@ class LandingPage:
         self.agent_messages: list[tuple[str, str]] = [
             (
                 "agent",
-                "Ola! Sou o agente inteligente da SmartLoop. Posso explicar RPA, sites, apps, IA, ERP, automacoes e como solicitar um projeto.",
+                "Ola! Sou o agente da SmartLoop. Pergunte sobre RPA, sites, apps, IA, ERP ou projetos sob medida.",
             )
         ]
         self.agent_messages_column = ft.Column(spacing=10, scroll=ft.ScrollMode.AUTO)
@@ -687,8 +687,9 @@ class LandingPage:
     def agent_bubble(self, role: str, text: str) -> ft.Control:
         is_user = role == "user"
         page_width = self.page.width or 390
-        compact_agent = page_width < 900
-        bubble_width = min(340, page_width - 78) if compact_agent else 420
+        compact_agent = page_width < 1200
+        panel_width = 340 if compact_agent else 520
+        bubble_width = panel_width - 56
         return ft.Row(
             [
                 ft.Container(
@@ -699,8 +700,9 @@ class LandingPage:
                     border=None if is_user else ft.Border.all(1, ft.Colors.with_opacity(0.16, theme.WHITE)),
                     content=ft.Text(
                         text,
+                        width=bubble_width - 24,
                         color=theme.WHITE,
-                        size=14,
+                        size=13 if compact_agent else 14,
                     ),
                 )
             ],
@@ -716,8 +718,8 @@ class LandingPage:
     def show_ai_agent(self):
         page_width = self.page.width or 390
         page_height = self.page.height or 780
-        compact_agent = page_width < 900
-        panel_width = min(380, page_width - 28) if compact_agent else 520
+        compact_agent = page_width < 1200
+        panel_width = 340 if compact_agent else 520
         panel_height = min(560, page_height - 120) if compact_agent else 620
         self.refresh_agent_messages()
 
