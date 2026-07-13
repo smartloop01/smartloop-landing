@@ -4,9 +4,9 @@ from dataclasses import dataclass
 @dataclass(frozen=True)
 class ContactConfig:
     email: str = "smartloopgmail@gmail.com"
-    whatsapp: str = "https://wa.me/5516991327011?text=Olá,%20quero%20um%20orçamento%20para%20minha%20empresa!"
-    instagram: str = "https://instagram.com/smartloop_1"
-    linkedin: str = "https://linkedin.com/in/valter-lira"
+    whatsapp: str = "https://wa.me/5516991327011?text=Ola%2C%20quero%20um%20orcamento%20para%20minha%20empresa"
+    instagram: str = "https://www.instagram.com/smartloop_1"
+    linkedin: str = "https://www.linkedin.com/in/valter-lira"
     github: str = "https://github.com/smartloop01"
 
 
@@ -16,15 +16,15 @@ CONTACT = ContactConfig()
 PROJECTS = [
     {
         "nome": "SmartLoop ERP",
-        "descricao": "Sistema de gestão empresarial com paineis, indicadores e fluxos integrados.",
+        "descricao": "Sistema de gestao empresarial com paineis, indicadores e fluxos integrados.",
         "categoria": "Web",
         "link": "https://site.com",
         "imagem": "ERP",
     },
     {
         "nome": "SmartLoop RPA",
-        "descricao": "Automação de processos repetitivos para operacões financeiras e administrativas.",
-        "categoria": "Automação",
+        "descricao": "Automacao de processos repetitivos para operacoes financeiras e administrativas.",
+        "categoria": "Automacao",
         "link": "https://site.com",
         "imagem": "RPA",
     },
@@ -125,7 +125,7 @@ TESTIMONIALS = [
     {
         "nome": "Bianca Torres",
         "cargo": "Head de Produto",
-        "texto": "Ganhamos previsibilidade, integracao e uma experiência digital muito superior.",
+        "texto": "Ganhamos previsibilidade, integracao e uma experiencia digital muito superior.",
         "iniciais": "BT",
     },
 ]

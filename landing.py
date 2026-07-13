@@ -1373,7 +1373,7 @@ class LandingPage:
         self.page.update()
 
     async def open_url(self, url: str):
-        result = ft.UrlLauncher().launch_url(url)
+        result = self.page.launch_url(url)
         if inspect.isawaitable(result):
             await result
 

@@ -28,5 +28,5 @@ def main(page: ft.Page):
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", "8088"))
-    host = os.getenv("HOST", "0.0.0.0")
+    host = os.getenv("HOST", "0.0.0.0" if os.getenv("PORT") else "127.0.0.1")
     ft.run(main, assets_dir=".", host=host, port=port, view=ft.AppView.WEB_BROWSER)
