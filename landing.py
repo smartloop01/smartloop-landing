@@ -686,9 +686,9 @@ class LandingPage:
 
     def agent_bubble(self, role: str, text: str) -> ft.Control:
         is_user = role == "user"
-        mobile = self.is_mobile()
         page_width = self.page.width or 390
-        bubble_width = min(420, page_width - 86) if mobile else 420
+        compact_agent = page_width < 900
+        bubble_width = min(340, page_width - 78) if compact_agent else 420
         return ft.Row(
             [
                 ft.Container(
@@ -714,11 +714,11 @@ class LandingPage:
         ]
 
     def show_ai_agent(self):
-        mobile = self.is_mobile()
         page_width = self.page.width or 390
         page_height = self.page.height or 780
-        panel_width = min(520, page_width - 20) if mobile else 520
-        panel_height = min(620, page_height - 78) if mobile else 620
+        compact_agent = page_width < 900
+        panel_width = min(380, page_width - 28) if compact_agent else 520
+        panel_height = min(560, page_height - 120) if compact_agent else 620
         self.refresh_agent_messages()
 
         async def send_message(_=None):
@@ -745,12 +745,12 @@ class LandingPage:
         agent_overlay = ft.Container(
             expand=True,
             bgcolor=ft.Colors.with_opacity(0.72, "#020617"),
-            alignment=ft.Alignment(0, 0) if mobile else ft.Alignment(1, 1),
-            padding=10 if mobile else 22,
+            alignment=ft.Alignment(0, 0) if compact_agent else ft.Alignment(1, 1),
+            padding=8 if compact_agent else 22,
             content=ft.Container(
                 width=panel_width,
                 height=panel_height,
-                padding=12 if mobile else 18,
+                padding=10 if compact_agent else 18,
                 border_radius=14,
                 bgcolor="#0F172A",
                 border=ft.Border.all(1, ft.Colors.with_opacity(0.22, theme.WHITE)),
@@ -762,7 +762,7 @@ class LandingPage:
                                 ft.Text(
                                     "Agente SmartLoop",
                                     color=theme.WHITE,
-                                    size=20 if mobile else 22,
+                                    size=18 if compact_agent else 22,
                                     weight=ft.FontWeight.W_800,
                                     expand=True,
                                 ),
@@ -773,7 +773,7 @@ class LandingPage:
                         ),
                         ft.Container(
                             expand=True,
-                            padding=10 if mobile else 12,
+                            padding=8 if compact_agent else 12,
                             border_radius=8,
                             bgcolor=ft.Colors.with_opacity(0.06, theme.WHITE),
                             content=self.agent_messages_column,
