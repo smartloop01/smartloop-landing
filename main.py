@@ -7,6 +7,9 @@ import theme
 from landing import LandingPage
 
 
+PROJECT_DIR = Path(__file__).resolve().parent
+
+
 def main(page: ft.Page):
     page.title = "SmartLoop | Tecnologia Inteligente"
     page.window.icon = "iniciosite.png"
@@ -33,7 +36,7 @@ if __name__ == "__main__":
     host = os.getenv("HOST", "0.0.0.0" if os.getenv("PORT") else "127.0.0.1")
     ft.run(
         main,
-        assets_dir=str(Path(__file__).parent),
+        assets_dir=str(PROJECT_DIR),
         host=host,
         port=port,
         view=ft.AppView.WEB_BROWSER,
