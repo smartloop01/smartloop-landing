@@ -967,17 +967,17 @@ class LandingPage:
                             text_align=ft.TextAlign.CENTER,
                             width=310 if mobile else None,
                         ),         
-                        ft.Row(
-                            [
-                                ft.TextButton(
-                                    label,
-                                    url=url,
-                                    style=ft.ButtonStyle(color=theme.GREEN),
-                                )
-                                for label, url in links
-                            ],
-                            wrap=True,
-                            alignment=ft.MainAxisAlignment.CENTER,
+                        ft.Container(
+                            width=330 if mobile else 720,
+                            alignment=ft.Alignment(0, 0),
+                            content=ft.Markdown(
+                                "  |  ".join([f"[{label}]({url})" for label, url in links]),
+                                extension_set=ft.MarkdownExtensionSet.GITHUB_WEB,
+                                auto_follow_links=True,
+                                auto_follow_links_target=ft.UrlTarget.BLANK,
+                                selectable=False,
+                                shrink_wrap=True,
+                            ),
                         ),
                     ],
                     spacing=7 if mobile else 8,
