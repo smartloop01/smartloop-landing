@@ -696,10 +696,12 @@ class LandingPage:
         return ft.Container(
             width=message_area_width,
             alignment=ft.Alignment(1, 0) if is_user else ft.Alignment(-1, 0),
+            clip_behavior=ft.ClipBehavior.HARD_EDGE,
             content=ft.Container(
                     width=bubble_width,
                     padding=8,
                     border_radius=8,
+                    clip_behavior=ft.ClipBehavior.HARD_EDGE,
                     bgcolor=theme.GREEN if is_user else ft.Colors.with_opacity(0.10, theme.WHITE),
                     border=None if is_user else ft.Border.all(1, ft.Colors.with_opacity(0.16, theme.WHITE)),
                     content=ft.Text(
@@ -709,7 +711,7 @@ class LandingPage:
                         size=13 if compact_agent else 14,
                         no_wrap=False,
                         max_lines=10,
-                        overflow=ft.TextOverflow.VISIBLE,
+                        overflow=ft.TextOverflow.CLIP,
                     ),
                 ),
         )
@@ -785,9 +787,11 @@ class LandingPage:
                             expand=True,
                             padding=8 if compact_agent else 12,
                             border_radius=8,
+                            clip_behavior=ft.ClipBehavior.HARD_EDGE,
                             bgcolor=ft.Colors.with_opacity(0.06, theme.WHITE),
                             content=ft.Container(
                                 width=message_area_width,
+                                clip_behavior=ft.ClipBehavior.HARD_EDGE,
                                 content=self.agent_messages_column,
                             ),
                         ),
