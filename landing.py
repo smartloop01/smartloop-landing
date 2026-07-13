@@ -4,6 +4,7 @@ import asyncio
 import threading
 import time
 import inspect
+import textwrap
 
 import flet as ft
 
@@ -688,25 +689,28 @@ class LandingPage:
         is_user = role == "user"
         page_width = self.page.width or 390
         compact_agent = page_width < 1200
-        panel_width = 340 if compact_agent else 520
+        panel_width = 300 if compact_agent else 520
         bubble_width = panel_width - 56
-        return ft.Row(
-            [
-                ft.Container(
+        wrapped_text = "\n".join(textwrap.wrap(text, width=32 if compact_agent else 54))
+        return ft.Container(
+            width=panel_width - 20,
+            alignment=ft.Alignment(1, 0) if is_user else ft.Alignment(-1, 0),
+            content=ft.Container(
                     width=bubble_width,
                     padding=12,
                     border_radius=8,
                     bgcolor=theme.GREEN if is_user else ft.Colors.with_opacity(0.10, theme.WHITE),
                     border=None if is_user else ft.Border.all(1, ft.Colors.with_opacity(0.16, theme.WHITE)),
                     content=ft.Text(
-                        text,
+                        wrapped_text,
                         width=bubble_width - 24,
                         color=theme.WHITE,
                         size=13 if compact_agent else 14,
+                        no_wrap=False,
+                        max_lines=10,
+                        overflow=ft.TextOverflow.VISIBLE,
                     ),
-                )
-            ],
-            alignment=ft.MainAxisAlignment.END if is_user else ft.MainAxisAlignment.START,
+                ),
         )
 
     def refresh_agent_messages(self):
@@ -719,7 +723,7 @@ class LandingPage:
         page_width = self.page.width or 390
         page_height = self.page.height or 780
         compact_agent = page_width < 1200
-        panel_width = 340 if compact_agent else 520
+        panel_width = 300 if compact_agent else 520
         panel_height = min(560, page_height - 120) if compact_agent else 620
         self.refresh_agent_messages()
 
