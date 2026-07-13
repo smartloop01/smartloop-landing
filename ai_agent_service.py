@@ -5,8 +5,8 @@ import os
 
 SMARTLOOP_CONTEXT = """
 Voce e o agente inteligente da SmartLoop.
-A SmartLoop cria solucoes para empresas com Automacao RPA, Desenvolvimento de Sites,
-Aplicativos Mobile e Web, Inteligencia Artificial, integracoes de sistemas e produtividade.
+A SmartLoop cria solucões para empresas com Automação RPA, Desenvolvimento de Sites,
+Aplicativos Mobile e Web, Inteligencia Artificial.
 
 Projetos demonstrados:
 - SmartLoop ERP: sistema de gestao empresarial com dashboards, financeiro, vendas, estoque e relatorios.
