@@ -8,8 +8,9 @@ from landing import LandingPage
 
 def main(page: ft.Page):
     page.title = "SmartLoop | Tecnologia Inteligente"
+    page.window.icon = "iniciosite.png"
     page.theme_mode = ft.ThemeMode.DARK
-    page.bgcolor = theme.BG
+    page.bgcolor = "#0950C2"
     page.padding = 0
     page.spacing = 0
     page.scroll = ft.ScrollMode.AUTO

@@ -4,6 +4,7 @@ import asyncio
 import threading
 import time
 import inspect
+import textwrap
 
 import flet as ft
 
@@ -54,7 +55,7 @@ class LandingPage:
         self.agent_messages: list[tuple[str, str]] = [
             (
                 "agent",
-                "Ola! Sou o agente inteligente da SmartLoop. Posso explicar RPA, sites, apps, IA, ERP, automacoes e como solicitar um projeto.",
+                "Ola! Sou o agente da SmartLoop. Pergunte sobre RPA, sites, apps, IA, ERP ou projetos sob medida.",
             )
         ]
         self.agent_messages_column = ft.Column(spacing=10, scroll=ft.ScrollMode.AUTO)
@@ -404,7 +405,7 @@ class LandingPage:
         content = ft.ResponsiveRow(
             [
                 ft.Container(
-                    col={"xs": 12, "md": 6},
+                   
                     content=ft.Column(
                         [
                             section_title("Sobre", "A SmartLoop pensa Tecnologia como Resultado"),
@@ -686,22 +687,33 @@ class LandingPage:
 
     def agent_bubble(self, role: str, text: str) -> ft.Control:
         is_user = role == "user"
-        return ft.Row(
-            [
-                ft.Container(
-                    width=420,
-                    padding=12,
+        page_width = self.page.width or 390
+        compact_agent = page_width < 1200
+        panel_width = 300 if compact_agent else 520
+        messages_content_width = panel_width - (52 if compact_agent else 84)
+        bubble_width = messages_content_width - 18 if compact_agent else 420
+        wrapped_text = "\n".join(textwrap.wrap(text, width=24 if compact_agent else 54))
+        return ft.Container(
+            width=messages_content_width,
+            alignment=ft.Alignment(1, 0) if is_user else ft.Alignment(-1, 0),
+            clip_behavior=ft.ClipBehavior.HARD_EDGE,
+            content=ft.Container(
+                    width=bubble_width,
+                    padding=8,
                     border_radius=8,
+                    clip_behavior=ft.ClipBehavior.HARD_EDGE,
                     bgcolor=theme.GREEN if is_user else ft.Colors.with_opacity(0.10, theme.WHITE),
                     border=None if is_user else ft.Border.all(1, ft.Colors.with_opacity(0.16, theme.WHITE)),
                     content=ft.Text(
-                        text,
+                        wrapped_text,
+                        width=bubble_width - 24,
                         color=theme.WHITE,
-                        size=14,
+                        size=13 if compact_agent else 14,
+                        no_wrap=False,
+                        max_lines=10,
+                        overflow=ft.TextOverflow.CLIP,
                     ),
-                )
-            ],
-            alignment=ft.MainAxisAlignment.END if is_user else ft.MainAxisAlignment.START,
+                ),
         )
 
     def refresh_agent_messages(self):
@@ -711,6 +723,14 @@ class LandingPage:
         ]
 
     def show_ai_agent(self):
+        page_width = self.page.width or 390
+        page_height = self.page.height or 780
+        compact_agent = page_width < 1200
+        panel_width = 300 if compact_agent else 520
+        message_area_width = panel_width - (20 if compact_agent else 36)
+        messages_content_width = message_area_width - (16 if compact_agent else 24)
+        panel_height = min(560, page_height - 120) if compact_agent else 620
+        self.agent_messages_column.width = messages_content_width
         self.refresh_agent_messages()
 
         async def send_message(_=None):
@@ -737,12 +757,12 @@ class LandingPage:
         agent_overlay = ft.Container(
             expand=True,
             bgcolor=ft.Colors.with_opacity(0.72, "#020617"),
-            alignment=ft.Alignment(1, 1),
-            padding=22,
+            alignment=ft.Alignment(0, 0) if compact_agent else ft.Alignment(1, 1),
+            padding=8 if compact_agent else 22,
             content=ft.Container(
-                width=520,
-                height=620,
-                padding=18,
+                width=panel_width,
+                height=panel_height,
+                padding=10 if compact_agent else 18,
                 border_radius=14,
                 bgcolor="#0F172A",
                 border=ft.Border.all(1, ft.Colors.with_opacity(0.22, theme.WHITE)),
@@ -750,23 +770,31 @@ class LandingPage:
                     [
                         ft.Row(
                             [
-                                ft.Row(
-                                    [
-                                        ft.Icon(ft.Icons.SMART_TOY, color=theme.GREEN, size=24),
-                                        ft.Text("Agente SmartLoop", color=theme.WHITE, size=22, weight=ft.FontWeight.W_800),
-                                    ],
-                                    spacing=8,
+                                ft.Icon(ft.Icons.SMART_TOY, color=theme.GREEN, size=24),
+                                ft.Text(
+                                    "Agente SmartLoop",
+                                    color=theme.WHITE,
+                                    size=18 if compact_agent else 22,
+                                    weight=ft.FontWeight.W_800,
+                                    expand=True,
                                 ),
                                 ft.IconButton(ft.Icons.CLOSE, icon_color=theme.WHITE, on_click=close_agent),
                             ],
                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                            vertical_alignment=ft.CrossAxisAlignment.CENTER,
                         ),
                         ft.Container(
+                            width=message_area_width,
                             expand=True,
-                            padding=12,
+                            padding=8 if compact_agent else 12,
                             border_radius=8,
+                            clip_behavior=ft.ClipBehavior.HARD_EDGE,
                             bgcolor=ft.Colors.with_opacity(0.06, theme.WHITE),
-                            content=self.agent_messages_column,
+                            content=ft.Container(
+                                width=messages_content_width,
+                                clip_behavior=ft.ClipBehavior.HARD_EDGE,
+                                content=self.agent_messages_column,
+                            ),
                         ),
                         ft.Row(
                             [
