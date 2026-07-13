@@ -690,11 +690,11 @@ class LandingPage:
         page_width = self.page.width or 390
         compact_agent = page_width < 1200
         panel_width = 300 if compact_agent else 520
-        message_area_width = panel_width - 36
-        bubble_width = 205 if compact_agent else 420
+        messages_content_width = panel_width - (52 if compact_agent else 84)
+        bubble_width = messages_content_width - 18 if compact_agent else 420
         wrapped_text = "\n".join(textwrap.wrap(text, width=24 if compact_agent else 54))
         return ft.Container(
-            width=message_area_width,
+            width=messages_content_width,
             alignment=ft.Alignment(1, 0) if is_user else ft.Alignment(-1, 0),
             clip_behavior=ft.ClipBehavior.HARD_EDGE,
             content=ft.Container(
@@ -727,9 +727,10 @@ class LandingPage:
         page_height = self.page.height or 780
         compact_agent = page_width < 1200
         panel_width = 300 if compact_agent else 520
-        message_area_width = panel_width - (36 if compact_agent else 60)
+        message_area_width = panel_width - (20 if compact_agent else 36)
+        messages_content_width = message_area_width - (16 if compact_agent else 24)
         panel_height = min(560, page_height - 120) if compact_agent else 620
-        self.agent_messages_column.width = message_area_width
+        self.agent_messages_column.width = messages_content_width
         self.refresh_agent_messages()
 
         async def send_message(_=None):
@@ -790,7 +791,7 @@ class LandingPage:
                             clip_behavior=ft.ClipBehavior.HARD_EDGE,
                             bgcolor=ft.Colors.with_opacity(0.06, theme.WHITE),
                             content=ft.Container(
-                                width=message_area_width,
+                                width=messages_content_width,
                                 clip_behavior=ft.ClipBehavior.HARD_EDGE,
                                 content=self.agent_messages_column,
                             ),
