@@ -927,7 +927,7 @@ class LandingPage:
                         ),
                         GlowButton("Falar no WhatsApp",
                                     ft.Icons.CHAT_BUBBLE,
-                                      self.open_url_handler(CONTACT.whatsapp)),
+                                      url=CONTACT.whatsapp),
                     ],
                     spacing=14 if mobile else 18,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -969,9 +969,11 @@ class LandingPage:
                         ),         
                         ft.Row(
                             [
-                                ft.TextButton(label,
-                                               on_click=self.open_url_handler(url),
-                                                 style=ft.ButtonStyle(color=theme.GREEN))
+                                ft.TextButton(
+                                    label,
+                                    url=url,
+                                    style=ft.ButtonStyle(color=theme.GREEN),
+                                )
                                 for label, url in links
                             ],
                             wrap=True,

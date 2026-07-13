@@ -26,7 +26,7 @@ def section_title(kicker: str, title: str, subtitle: str | None = None) -> ft.Co
 
 
 class GlowButton(ft.Container):
-    def __init__(self, label: str, icon: str, on_click=None, primary=True):
+    def __init__(self, label: str, icon: str, on_click=None, primary=True, url=None):
         super().__init__()
         self.primary = primary
         self.content = ft.Row(
@@ -56,6 +56,7 @@ class GlowButton(ft.Container):
         self.scale = ft.Scale(1)
         self.on_hover = self._hover
         self.on_click = on_click
+        self.url = url
 
     def _hover(self, e: ft.ControlEvent):
         active = e.data == "true"
