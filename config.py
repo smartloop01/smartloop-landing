@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 
 
+# Dados de contato usados nos botoes e no rodape.
+# Para trocar links do site, edite os valores abaixo.
 @dataclass(frozen=True)
 class ContactConfig:
     email: str = "smartloopgmail@gmail.com"
@@ -13,18 +15,21 @@ class ContactConfig:
 CONTACT = ContactConfig()
 
 
+# Lista principal de projetos exibidos na secao Portfolio.
+# Importante: mantenha os nomes das chaves exatamente assim:
+# "nome", "descricao", "categoria", "link" e "imagem".
 PROJECTS = [
     {
         "nome": "SmartLoop ERP",
-        "descricao": "Sistema de gestao empresarial com paineis, indicadores e fluxos integrados.",
+        "descricao": "Sistema de gestão empresarial com paineis, indicadores e fluxos integrados.",
         "categoria": "Web",
         "link": "https://site.com",
         "imagem": "ERP",
     },
     {
         "nome": "SmartLoop RPA",
-        "descricao": "Automacao de processos repetitivos para operacoes financeiras e administrativas.",
-        "categoria": "Automacao",
+        "descricao": "Automacão de processos repetitivos para operacões financeiras e administrativas.",
+        "categoria": "Automacão",
         "link": "https://site.com",
         "imagem": "RPA",
     },
@@ -38,42 +43,44 @@ PROJECTS = [
 ]
 
 
+# Dados extras das paginas demonstrativas de cada projeto.
+# A chave principal precisa ter o mesmo nome usado em PROJECTS["nome"].
 PROJECT_DEMOS = {
     "SmartLoop ERP": {
         "link": "demo:erp",
-        "demo_titulo": "ERP inteligente para gestao empresarial",
+        "demo_titulo": "ERP inteligente para gestão empresarial",
         "demo_resumo": "Uma central para acompanhar clientes, vendas, financeiro, estoque e indicadores em tempo real.",
         "demo_metricas": [
             ("+38%", "produtividade"),
             ("-42%", "retrabalho"),
-            ("24/7", "visao do negocio"),
+            ("24/7", "visao do negócio"),
         ],
         "demo_funcionalidades": [
             "Dashboard executivo com KPIs em tempo real",
             "Cadastro de clientes, produtos e usuarios",
             "Controle financeiro, vendas e estoque",
-            "Relatorios automaticos para tomada de decisao",
+            "Relatórios automaticos para tomada de decisão",
         ],
         "demo_beneficios": [
             "Mais controle operacional",
             "Menos planilhas soltas",
-            "Gestao centralizada",
+            "Gestão centralizada",
         ],
     },
     "SmartLoop RPA": {
         "link": "demo:rpa",
         "demo_titulo": "Robos para automatizar processos repetitivos",
-        "demo_resumo": "Automacoes para executar tarefas operacionais, integrar sistemas e reduzir tempo perdido em rotinas manuais.",
+        "demo_resumo": "Automacões para executar tarefas operacionais, integrar sistemas e reduzir tempo perdido em rotinas manuais.",
         "demo_metricas": [
-            ("100k+", "horas automatizadas"),
-            ("87%", "menos retrabalho"),
-            ("24/7", "execucao ativa"),
+            ("100k+", "Horas automatizadas"),
+            ("87%", "Menos retrabalho"),
+            ("24/7", "Execucão ativa"),
         ],
         "demo_funcionalidades": [
             "Leitura e preenchimento automatico de sistemas",
-            "Geracao de relatorios e envio por email",
-            "Integracao entre planilhas, ERPs e portais",
-            "Monitoramento de falhas e logs de execucao",
+            "Geracão de relatorios e envio por email",
+            "Integracão entre planilhas, ERPs e portais",
+            "Monitoramento de falhas e logs de execucão",
         ],
         "demo_beneficios": [
             "Equipe livre de tarefas repetitivas",
@@ -84,16 +91,16 @@ PROJECT_DEMOS = {
     "AI Sales Copilot": {
         "link": "demo:ai-sales",
         "demo_titulo": "Copiloto de IA para times comerciais",
-        "demo_resumo": "Um assistente para analisar leads, resumir atendimentos, sugerir proximas acoes e acelerar o ciclo de vendas.",
+        "demo_resumo": "Um assistente para analisar leads, resumir atendimentos, sugerir proximas acões e acelerar o ciclo de vendas.",
         "demo_metricas": [
-            ("+31%", "conversao"),
-            ("-55%", "tempo de resposta"),
-            ("98%", "priorizacao"),
+            ("+31%", "Conversão"),
+            ("-55%", "Tempo de resposta"),
+            ("98%", "Priorizacao"),
         ],
         "demo_funcionalidades": [
             "Resumo automatico de conversas comerciais",
-            "Classificacao de leads por potencial de compra",
-            "Sugestao de proximas mensagens e follow-ups",
+            "Classificacão de leads por potencial de compra",
+            "Sugestão de proximas mensagens e follow-ups",
             "Painel de oportunidades e alertas inteligentes",
         ],
         "demo_beneficios": [
@@ -105,27 +112,31 @@ PROJECT_DEMOS = {
 }
 
 
+# Junta os dados basicos de PROJECTS com as informacoes extras de PROJECT_DEMOS.
+# Assim cada card do portfolio ja recebe link, metricas, beneficios e mockup.
 for project in PROJECTS:
     project.update(PROJECT_DEMOS.get(project["nome"], {}))
 
 
+# Depoimentos exibidos no slider automatico.
+# Cada item tem nome, cargo, texto e iniciais para o avatar circular.
 TESTIMONIALS = [
     {
-        "nome": "Marina Costa",
-        "cargo": "Diretora de Operacoes",
+        "nome": "Cristina Costa",
+        "cargo": "Diretora de Operacões",
         "texto": "A SmartLoop automatizou rotinas criticas e liberou nosso time para pensar no crescimento.",
-        "iniciais": "MC",
+        "iniciais": "CC",
     },
     {
-        "nome": "Rafael Mendes",
+        "nome": "Raphael Mendes",
         "cargo": "CEO, NovaLog",
         "texto": "O projeto ficou elegante, rapido e muito alinhado com os processos da empresa.",
         "iniciais": "RM",
     },
     {
-        "nome": "Bianca Torres",
+        "nome": "Cecilia Torres",
         "cargo": "Head de Produto",
-        "texto": "Ganhamos previsibilidade, integracao e uma experiencia digital muito superior.",
-        "iniciais": "BT",
+        "texto": "Ganhamos previsibilidade, integracão e uma experiencia digital muito superior.",
+        "iniciais": "CT",
     },
 ]

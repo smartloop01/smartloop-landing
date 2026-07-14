@@ -15,15 +15,17 @@ from ai_agent_service import ask_smartloop_ai
 from lead_service import init_db, save_lead
 
 
+# Cards exibidos na secao "Dashboard Inteligente".
 SERVICE_CARDS = [
-    ("smart_toy", "Automação RPA", "Robos que executam processos repetitivos com precisao."),
+    ("smart_toy", "Automação RPA", "Robos que executam processos repetitivos com precisão."),
     ("language", "Desenvolvimento Web", "Sites, portais e sistemas rapidos para vender e operar melhor."),
     ("phone_iphone", "Aplicativos Mobile", "Apps mobile e web com experiencia fluida e escalavel."),
-    ("psychology", "Inteligência Artificial", "IA aplicada para decisoes, atendimento e produtividade."),
+    ("psychology", "Inteligência Artificial", "IA aplicada para decisões, atendimento e produtividade."),
     ("analytics", "Integraçâo de Sistemas", "Dados conectados entre plataformas, equipes e indicadores."),
-    ("cloud_queue", "Soluções em Nuvem", "Arquiteturas seguras para crescer sem travar a operacao."),
+    ("cloud_queue", "Soluções em Nuvem", "Arquiteturas seguras para crescer sem travar a operacão."),
 ]
 
+# Cards exibidos na secao "Diferenciais".
 DIFFERENTIALS = [
     ("bolt", "Entrega Rápida"),
     ("smart_toy", "Especialistas em IA"),
@@ -33,32 +35,47 @@ DIFFERENTIALS = [
     ("ads_click", "Soluções Sob Medida"),
 ]
 
+# Numeros animados exibidos na secao de metricas da empresa.
 METRICS = [
-    ("Projetos", 50, "+", ""),
+    ("Projetos", 23, "+", ""),
     ("Mil horas automatizadas", 100, "+", " mil"),
-    ("Clientes", 30, "+", ""),
-    ("Satisfacao", 98, "", "%"),
+    ("Clientes", 23, "+", ""),
+    ("Satisfação", 98, "", "%"),
 ]
 
 
 class LandingPage:
+    """Monta toda a landing page one page da SmartLoop."""
+
     def __init__(self, page: ft.Page):
+        """Prepara estado, banco, depoimentos e botao flutuante do agente."""
+
         self.page = page
         self.metric_values: list[ft.Text] = []
         self.testimonial_index = 0
+
+        # Garante que a tabela de leads exista antes do usuario abrir formulario.
         init_db()
+
+        # Caixa animada usada para trocar os depoimentos automaticamente.
         self.testimonial_box = ft.AnimatedSwitcher(
             content=ft.Container(),
             duration=500,
             transition=ft.AnimatedSwitcherTransition.FADE,
         )
+
+        # Mensagem inicial do chat do agente inteligente.
         self.agent_messages: list[tuple[str, str]] = [
             (
                 "agent",
-                "Ola! Sou o agente da SmartLoop. Pergunte sobre RPA, sites, apps, IA, ERP ou projetos sob medida.",
+                "Ola! Sou o agente da SmartLoop. Pergunte sobre RPA, Sites, Apps, IA, ERP ou Projetos sob Medida.",
             )
         ]
+
+        # Lista rolavel onde as mensagens do agente aparecem.
         self.agent_messages_column = ft.Column(spacing=10, scroll=ft.ScrollMode.AUTO)
+
+        # Campo de texto usado pelo visitante para perguntar ao agente.
         self.agent_input = ft.TextField(
             hint_text="Pergunte sobre a SmartLoop...",
             color=theme.WHITE,
@@ -70,6 +87,8 @@ class LandingPage:
             min_lines=1,
             max_lines=3,
         )
+
+        # Botao flutuante verde que abre o agente SmartLoop.
         self.page.floating_action_button = ft.FloatingActionButton(
             icon=ft.Icons.SMART_TOY,
             tooltip="Agente IA SmartLoop",
@@ -79,9 +98,13 @@ class LandingPage:
         )
 
     def is_mobile(self) -> bool:
+        """Retorna True quando a tela esta em tamanho de celular."""
+
         return bool(self.page.width and self.page.width < 720)
 
     def build(self) -> ft.Control:
+        """Junta todas as secoes da one page em uma coluna unica."""
+
         return ft.Container(
             expand=True,
             gradient=ft.LinearGradient(
@@ -91,6 +114,7 @@ class LandingPage:
             ),
             content=ft.Column(
                 [
+                    # Ordem das secoes exibidas na pagina.
                     self.hero(),
                     self.services(),
                     self.about(),
@@ -107,6 +131,8 @@ class LandingPage:
         )
 
     def hero(self) -> ft.Control:
+        """Primeira dobra do site: logo, texto principal, CTA e dashboard."""
+
         mobile = self.is_mobile()
         logo_width = 330 if mobile else 700
         logo_height = 92 if mobile else 180
@@ -279,6 +305,8 @@ class LandingPage:
         )
 
     def mini_stat(self, value: str, label: str, color: str) -> ft.Control:
+        """Cria um pequeno indicador dentro do dashboard da hero."""
+
         return ft.Container(
             expand=True,
             padding=10,
@@ -300,6 +328,8 @@ class LandingPage:
 
     def progress_tile(self, label: str,
                        value: float, color: str) -> ft.Control:
+        """Cria uma linha de progresso visual dentro do dashboard."""
+
         return ft.Container(
             expand=True,
             padding=16,
@@ -324,6 +354,8 @@ class LandingPage:
         )
 
     def services(self) -> ft.Control:
+        """Monta a seção com os cards de soluções digitais."""
+
         cards = []
         for icon, title, desc in SERVICE_CARDS:
             cards.append(
@@ -364,6 +396,8 @@ class LandingPage:
         )
 
     def about(self) -> ft.Control:
+        """Monta a seção 'Sobre' com texto institucional e imagem."""
+
         illustration = GlassCard(
             ft.Container(
                 height=400,
@@ -410,13 +444,14 @@ class LandingPage:
                         [
                             section_title("Sobre", "A SmartLoop pensa Tecnologia como Resultado"),
                             ft.Text(
-                                "A SmartLoop Desenvolve Soluções Tecnologicas que Eliminam Tarefas Repetitivas, Reduzem Custos Operacionais e Aumentam a Produtividade Atraves da Automacao, Inteligencia Artificial e Desenvolvimento de Software sob Medida.",
+                                "A SmartLoop Desenvolve Soluções Tecnologicas que Eliminam Tarefas Repetitivas, Reduzem Custos Operacionais e Aumentam a Produtividade Através da Automacão, Inteligência Artificial e Desenvolvimento de Software sob Medida.",
                                 color=theme.WHITE,
                                 style=theme.body_style(17),
+                                text_align=ft.TextAlign.CENTER,
                             ),
                         ],
                         spacing=20,
-                        horizontal_alignment=ft.CrossAxisAlignment.START,
+                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                     ),
                 ),
                 ft.Container(col={"xs": 12, "md": 6}, content=illustration),
@@ -429,6 +464,8 @@ class LandingPage:
         return self.section("about", content)
 
     def portfolio(self) -> ft.Control:
+        """Monta o portfolio usando os projetos definidos em config.py."""
+
         project_cards = [
             ft.Container(col={"xs": 12, "md": 4}, content=self.project_card(project))
             for project in PROJECTS
@@ -448,6 +485,8 @@ class LandingPage:
         )
 
     def project_card(self, project: dict) -> ft.Control:
+        """Cria o card individual de um projeto do portfolio."""
+
         image = ft.Container(
             height=100,
             width=100,
@@ -504,6 +543,8 @@ class LandingPage:
         )
 
     def project_link_handler(self, project: dict):
+        """Abre demo interna quando o link comeca com demo:, ou abre URL externa."""
+
         async def handler(_):
             if str(project.get("link", "")).startswith("demo:"):
                 self.show_project_demo(project)
@@ -514,6 +555,8 @@ class LandingPage:
         return handler
 
     def demo_stat(self, value: str, label: str) -> ft.Control:
+        """Cria um pequeno card de metrica dentro da demo do projeto."""
+
         return ft.Container(
             expand=True,
             padding=14,
@@ -531,6 +574,8 @@ class LandingPage:
         )
 
     def demo_list_card(self, title: str, items: list[str], icon: str) -> ft.Control:
+        """Cria uma lista visual de funcionalidades ou beneficios."""
+
         return ft.Container(
             expand=True,
             padding=18,
@@ -563,6 +608,8 @@ class LandingPage:
         )
 
     def demo_mockup(self, project: dict) -> ft.Control:
+        """Cria a imagem/mockup conceitual dentro da demo do projeto."""
+
         return ft.Container(
             height=300,
             padding=18,
@@ -599,6 +646,8 @@ class LandingPage:
         )
 
     def show_project_demo(self, project: dict):
+        """Abre um overlay com detalhes do projeto selecionado."""
+
         def close_demo(_=None):
             if demo_overlay in self.page.overlay:
                 self.page.overlay.remove(demo_overlay)
@@ -670,7 +719,7 @@ class LandingPage:
                                 ),
                                 ft.Container(
                                     col={"xs": 12, "md": 6},
-                                    content=self.demo_list_card("Beneficios", benefit_items, ft.Icons.TRENDING_UP),
+                                    content=self.demo_list_card("Benefícios", benefit_items, ft.Icons.TRENDING_UP),
                                 ),
                             ],
                             spacing=14,
@@ -686,6 +735,8 @@ class LandingPage:
         self.page.update()
 
     def agent_bubble(self, role: str, text: str) -> ft.Control:
+        """Cria o balao de mensagem do chat do agente inteligente."""
+
         is_user = role == "user"
         page_width = self.page.width or 390
         compact_agent = page_width < 1200
@@ -717,12 +768,16 @@ class LandingPage:
         )
 
     def refresh_agent_messages(self):
+        """Recria a lista visual de mensagens do agente."""
+
         self.agent_messages_column.controls = [
             self.agent_bubble(role, message)
             for role, message in self.agent_messages
         ]
 
     def show_ai_agent(self):
+        """Abre a janela flutuante do agente inteligente."""
+
         page_width = self.page.width or 390
         page_height = self.page.height or 780
         compact_agent = page_width < 1200
@@ -810,7 +865,7 @@ class LandingPage:
                             vertical_alignment=ft.CrossAxisAlignment.END,
                         ),
                         ft.Text(
-                            "Respostas geradas por IA. Para proposta comercial, solicite um orcamento.",
+                            "Respostas geradas por IA. Para proposta comercial, solicite um Orçamento.",
                             size=11,
                             color=ft.Colors.with_opacity(0.70, theme.WHITE),
                             text_align=ft.TextAlign.CENTER,
@@ -824,6 +879,8 @@ class LandingPage:
         self.page.update()
 
     def metrics(self) -> ft.Control:
+        """Monta a secao de numeros animados da empresa."""
+
         cards = []
         self.metric_values = []
         for label, _, prefix, suffix in METRICS:
@@ -853,6 +910,8 @@ class LandingPage:
                                                 alignment=ft.MainAxisAlignment.CENTER))
 
     def differentials(self) -> ft.Control:
+        """Monta a secao de diferenciais competitivos."""
+
         cards = []
         for icon, title in DIFFERENTIALS:
             cards.append(
@@ -888,6 +947,8 @@ class LandingPage:
         )
 
     def testimonials(self) -> ft.Control:
+        """Monta a secao de depoimentos com slider automatico."""
+
         self.testimonial_box.content = self.testimonial_card(TESTIMONIALS[0])
         return self.section(
             "testimonials",
@@ -902,6 +963,8 @@ class LandingPage:
         )
 
     def testimonial_card(self, item: dict) -> ft.Control:
+        """Cria o card visual de um depoimento."""
+
         return GlassCard(
             ft.Column(
                 [
@@ -939,13 +1002,15 @@ class LandingPage:
         )
 
     def final_cta(self) -> ft.Control:
+        """Monta a chamada final para o WhatsApp."""
+
         mobile = self.is_mobile()
         return self.section(
             "cta",
             GlassCard(
                 ft.Column(
                     [
-                        ft.Text("Pronto para Automatizar seu Negocio?", style=theme.title_style(29 if mobile else 42), text_align=ft.TextAlign.CENTER),
+                        ft.Text("Pronto para Automatizar seu Negócio?", style=theme.title_style(29 if mobile else 42), text_align=ft.TextAlign.CENTER),
                         ft.Text(
                             "Vamos Desenhar um Fluxo mais Rápido, Inteligente e Lucrativo para sua Empresa.",
                             color=theme.WHITE,
@@ -968,6 +1033,8 @@ class LandingPage:
         )
 
     def footer(self) -> ft.Control:
+        """Monta o rodape com links externos e contatos."""
+
         mobile = self.is_mobile()
         links = [
             ("Email", f"mailto:{CONTACT.email}"),
@@ -1016,6 +1083,8 @@ class LandingPage:
         )
 
     def section(self, key: str, content: ft.Control) -> ft.Control:
+        """Aplica espacamento padrao e chave de scroll em cada secao."""
+
         mobile = self.is_mobile()
         return ft.Container(
             key=key,
@@ -1024,12 +1093,16 @@ class LandingPage:
         )
 
     def show_budget_form_handler(self):
+        """Cria o manipulador de clique que abre o formulario de orcamento."""
+
         async def handler(_):
             self.show_budget_form()
 
         return handler
 
     def form_field(self, label: str, multiline: bool = False) -> ft.Container:
+        """Cria um campo de formulario com o visual padrao."""
+
         field = ft.TextField(
             label=label,
             multiline=multiline,
@@ -1043,6 +1116,8 @@ class LandingPage:
         return self.form_input_box(field)
 
     def form_input_box(self, field) -> ft.Container:
+        """Envolve campos e dropdowns com borda verde quando recebem foco."""
+
         default_border = ft.Colors.with_opacity(0.35, theme.WHITE)
 
         box = ft.Container(
@@ -1072,6 +1147,8 @@ class LandingPage:
         return box
 
     def formulario_antigo_alerta(self):
+        """Versao antiga do formulario em dialog. Mantida como referencia."""
+
         nome = self.form_field("Seu nome")
         empresa = self.form_field("Nome da empresa")
         whatsapp = self.form_field("WhatsApp")
@@ -1154,7 +1231,7 @@ class LandingPage:
                             alignment=ft.MainAxisAlignment.END,
                         ),
                         ft.Text(
-                            "Preencha as informações para a SmartLoop entender seu negocio e entrar em contato.",
+                            "Preencha as informações para a SmartLoop entender seu Negócio e entrar em contato.",
                             color=theme.WHITE,
                             size=14,
                         ),
@@ -1184,7 +1261,7 @@ class LandingPage:
         )
 
         async def submit_form(_):
-            print("Clique recebido no botao Salvar lead")
+            print("Clique recebido no botão Salvar lead")
             required = [
                 (nome, "Informe seu nome."),
                 (empresa, "Informe o nome da empresa."),
@@ -1230,15 +1307,17 @@ class LandingPage:
         self.page.update()
 
     def formulario_antigo_overlay(self):
+        """Versao antiga do formulario em overlay. Mantida como referencia."""
+
         nome = self.form_field("Seu nome")
         empresa = self.form_field("Nome da empresa")
         whatsapp = self.form_field("WhatsApp")
         email = self.form_field("Email")
-        segmento = self.form_field("Segmento do negocio")
-        objetivo = self.form_field("Qual problema voce quer resolver?", multiline=True)
+        segmento = self.form_field("Segmento do negócio")
+        objetivo = self.form_field("Qual problema você quer resolver?", multiline=True)
         detalhes = self.form_field("Conte mais detalhes do projeto", multiline=True)
         tipo_projeto = ft.Dropdown(
-            label="Qual projeto de tecnologia voce quer fazer?",
+            label="Qual projeto de tecnologia você quer fazer?",
             options=[
                 ft.DropdownOption("Automação RPA"),
                 ft.DropdownOption("Site ou Landing Page"),
@@ -1287,7 +1366,7 @@ class LandingPage:
             self.page.update()
 
         def submit_form(_):
-            print("Clique recebido no botao Salvar lead")
+            print("Clique recebido no botão Salvar lead")
             try:
                 def value(control):
                     return (control.value or "").strip()
@@ -1345,7 +1424,7 @@ class LandingPage:
                             [
                                 ft.Text("Solicitar Orçamento", color=theme.WHITE, size=24, weight=ft.FontWeight.W_800),
                                 ft.TextButton(
-                                    "Voltar para pagina",
+                                    "Voltar para página",
                                     icon=ft.Icons.ARROW_BACK,
                                     on_click=close_form,
                                     style=ft.ButtonStyle(color=theme.GREEN),
@@ -1354,7 +1433,7 @@ class LandingPage:
                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                         ),
                         ft.Text(
-                            "Preencha as informações para a SmartLoop entender seu negocio e entrar em contato.",
+                            "Preencha as informações para a SmartLoop entender seu negócio e entrar em contato.",
                             color=theme.WHITE,
                             size=14,
                         ),
@@ -1403,28 +1482,38 @@ class LandingPage:
         self.page.update()
 
     async def open_url(self, url: str):
+        """Abre uma URL externa no navegador."""
+
         result = self.page.launch_url(url)
         if inspect.isawaitable(result):
             await result
 
     async def scroll_to(self, key: str):
+        """Rola a pagina ate uma secao pela chave informada."""
+
         await self.page.scroll_to(scroll_key=key,
                                    duration=700, 
                                    curve=ft.AnimationCurve.EASE_IN_OUT)
 
     def open_url_handler(self, url: str):
+        """Cria um evento de clique para abrir URL externa."""
+
         async def handler(_):
             await self.open_url(url)
 
         return handler
 
     def scroll_handler(self, key: str):
+        """Cria um evento de clique para rolar ate uma secao."""
+
         async def handler(_):
             await self.scroll_to(key)
 
         return handler
 
     def show_budget_form(self):
+        """Formulario principal de captacao de leads/orcamentos."""
+
         nome = self.form_field("Seu nome")
         empresa = self.form_field("Nome da empresa")
         whatsapp = self.form_field("WhatsApp")
@@ -1499,7 +1588,7 @@ class LandingPage:
             self.page.update()
 
         def submit_form(_):
-            print("Clique recebido no botao Salvar lead")
+            print("Clique recebido no botão Salvar lead")
             status.value = "Salvando lead..."
             status.color = theme.GREEN
             self.page.update()
@@ -1542,7 +1631,7 @@ class LandingPage:
                     [
                         ft.Row(
                             [
-                                ft.Text("Solicitar Orcamento", color=theme.WHITE, size=21, weight=ft.FontWeight.W_800),
+                                ft.Text("Solicitar Orçamento", color=theme.WHITE, size=21, weight=ft.FontWeight.W_800),
                                 ft.TextButton("Voltar", icon=ft.Icons.ARROW_BACK, on_click=close_form, style=ft.ButtonStyle(color=theme.GREEN)),
                             ],
                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
@@ -1581,10 +1670,14 @@ class LandingPage:
         self.page.update()
 
     def start_animations(self):
+        """Inicia animacoes que rodam depois que a pagina carregou."""
+
         threading.Thread(target=self._animate_metrics, daemon=True).start()
         threading.Thread(target=self._rotate_testimonials, daemon=True).start()
 
     def _animate_metrics(self):
+        """Anima os numeros da secao de metricas progressivamente."""
+
         time.sleep(0.65)
         for step in range(1, 41):
             for idx, (_, target, prefix, suffix) in enumerate(METRICS):
@@ -1594,6 +1687,8 @@ class LandingPage:
             time.sleep(0.035)
 
     def _rotate_testimonials(self):
+        """Troca os depoimentos automaticamente em loop."""
+
         while True:
             time.sleep(4.2)
             self.testimonial_index = (self.testimonial_index + 1) % len(TESTIMONIALS)
