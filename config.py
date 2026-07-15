@@ -28,8 +28,8 @@ PROJECTS = [
     },
     {
         "nome": "SmartLuup RPA",
-        "descricao": "Automacão de processos repetitivos para operacões financeiras e administrativas.",
-        "categoria": "Automacão",
+        "descricao": "Automação de processos repetitivos para operações financeiras e administrativas.",
+        "categoria": "Automação",
         "link": "https://site.com",
         "imagem": "RPA",
     },
@@ -70,7 +70,7 @@ PROJECT_DEMOS = {
     "SmartLuup RPA": {
         "link": "demo:rpa",
         "demo_titulo": "Robos para automatizar processos repetitivos",
-        "demo_resumo": "Automacões para executar tarefas operacionais, integrar sistemas e reduzir tempo perdido em rotinas manuais.",
+        "demo_resumo": "Automações para executar tarefas operacionais, integrar sistemas e reduzir tempo perdido em rotinas manuais.",
         "demo_metricas": [
             ("100k+", "Horas automatizadas"),
             ("87%", "Menos retrabalho"),

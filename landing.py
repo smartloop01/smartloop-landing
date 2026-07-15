@@ -22,7 +22,7 @@ SERVICE_CARDS = [
     ("phone_iphone", "Aplicativos Mobile", "Apps mobile e web com experiencia fluida e escalavel."),
     ("psychology", "Inteligência Artificial", "IA aplicada para decisões, atendimento e produtividade."),
     ("analytics", "Integraçâo de Sistemas", "Dados conectados entre plataformas, equipes e indicadores."),
-    ("cloud_queue", "Soluções em Nuvem", "Arquiteturas seguras para crescer sem travar a operacão."),
+    ("cloud_queue", "Soluções em Nuvem", "Arquiteturas seguras para crescer sem travar a operação."),
 ]
 
 # Cards exibidos na secao "Diferenciais".
@@ -290,7 +290,7 @@ class LandingPage:
                             ),
                             ft.Text(
                                 "Automação, IA, Sites e Aplicativos para acelerar o crescimento do seu negocio.",
-                                color=theme.WHITE,
+                                color="#d6d6d6",
                                 style=theme.body_style(hero_body_size),
                                 text_align=ft.TextAlign.CENTER,
                             ),
@@ -470,8 +470,8 @@ class LandingPage:
                         [
                             section_title("Sobre", "A SmartLuup pensa Tecnologia como Resultado"),
                             ft.Text(
-                                "A SmartLuup Desenvolve Soluções Tecnologicas que Eliminam Tarefas Repetitivas, Reduzem Custos Operacionais e Aumentam a Produtividade Através da Automacão, Inteligência Artificial e Desenvolvimento de Software sob Medida.",
-                                color=theme.WHITE,
+                                "A SmartLuup desenvolve soluções tecnologicas que eliminam tarefas repetitivas, reduzem custos operacionais e aumentam a produtividade através da automação, inteligência artificial e desenvolvimento de software sob medida.",
+                                color="#d6d6d6",
                                 style=theme.body_style(17),
                                 text_align=ft.TextAlign.CENTER,
                             ),
@@ -500,7 +500,7 @@ class LandingPage:
             "portfolio",
             ft.Column(
                 [
-                    section_title("Portfólio de Projetos", "Soluções Digitais"),
+                    section_title("", "Soluções Digitais"),
                     ft.ResponsiveRow(project_cards, spacing=18,
                                       run_spacing=18,
                                         alignment=ft.MainAxisAlignment.CENTER),
@@ -557,7 +557,7 @@ class LandingPage:
                              style=theme.body_style(16, theme.WHITE),
                              text_align=ft.TextAlign.CENTER,
                              width=260),
-                    GlowButton("Acessar Projeto",
+                    GlowButton("Acessar",
                                 ft.Icons.ARROW_OUTWARD, 
                                 self.project_link_handler(project),
                                   primary=False),
@@ -1039,7 +1039,7 @@ class LandingPage:
                         ft.Text("Pronto para Automatizar seu Negócio?", style=theme.title_style(29 if mobile else 42), text_align=ft.TextAlign.CENTER),
                         ft.Text(
                             "Vamos Desenhar um Fluxo mais Rápido, Inteligente e Lucrativo para sua Empresa.",
-                            color=theme.WHITE,
+                            color="#d6d6d6",
                             style=theme.body_style(15 if mobile else 17),
                             text_align=ft.TextAlign.CENTER,
                             width=300 if mobile else None,
@@ -1147,33 +1147,24 @@ class LandingPage:
             ("GitHub", CONTACT.github),
         ]
 
-        def policy_button(label: str) -> ft.Container:
+        def policy_link(label: str) -> ft.Container:
             return ft.Container(
-                width=310 if mobile else None,
-                padding=ft.Padding(12, 8, 12, 8),
-                border_radius=12,
-                bgcolor=ft.Colors.with_opacity(0.05, theme.WHITE),
-                border=ft.Border.all(1, ft.Colors.with_opacity(0.12, theme.WHITE)),
                 on_click=lambda _, policy_title=label: self.show_policy_modal(policy_title),
-                content=ft.Row(
-                    [
-                        ft.Container(
-                            width=28,
-                            alignment=ft.Alignment(0, 0),
-                            content=ft.Icon(ft.Icons.PRIVACY_TIP, size=18, color=theme.GREEN),
-                        ),
-                        ft.Text(
-                            label,
-                            color=theme.WHITE,
-                            size=13 if mobile else 14,
-                            expand=True,
-                            text_align=ft.TextAlign.LEFT,
-                        ),
-                    ],
-                    spacing=8,
-                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                padding=ft.Padding(0, 2, 0, 2),
+                content=ft.Text(
+                    label,
+                    color=theme.BLUE,
+                    size=14 if mobile else 15,
+                    text_align=ft.TextAlign.CENTER,
                 ),
             )
+
+        policy_items = list(PRIVACY_POLICIES.keys())
+        policy_controls = []
+        for index, label in enumerate(policy_items):
+            policy_controls.append(policy_link(label))
+            if index < len(policy_items) - 1:
+                policy_controls.append(ft.Text("|", color=theme.WHITE, size=14))
 
         return ft.Container(
             padding=ft.Padding(0, 20 if mobile else 28, 0, 26 if mobile else 34),
@@ -1206,33 +1197,25 @@ class LandingPage:
                                 shrink_wrap=True,
                             ),
                         ),
-                        ft.Container(height=8 if mobile else 14),
+                        ft.Container(height=6 if mobile else 10),
                         ft.Text(
                             "🔒 Segurança e Privacidade",
-                            size=17 if mobile else 20,
+                            size=15 if mobile else 17,
                             weight=ft.FontWeight.W_800,
                             color=theme.WHITE,
                             text_align=ft.TextAlign.CENTER,
                         ),
-                        ft.Column(
-                            [policy_button(label) for label in PRIVACY_POLICIES.keys()],
-                            spacing=8,
-                            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                        )
-                        if mobile
-                        else ft.ResponsiveRow(
-                            [
-                                ft.Container(
-                                    col={"xs": 12, "sm": 6, "md": 4},
-                                    alignment=ft.Alignment(0, 0),
-                                    padding=4,
-                                    content=policy_button(label),
-                                )
-                                for label in PRIVACY_POLICIES.keys()
-                            ],
-                            spacing=6,
-                            run_spacing=6,
-                            alignment=ft.MainAxisAlignment.CENTER,
+                        ft.Container(
+                            width=330 if mobile else 760,
+                            alignment=ft.Alignment(0, 0),
+                            content=ft.Row(
+                                policy_controls,
+                                wrap=True,
+                                spacing=8,
+                                run_spacing=2,
+                                alignment=ft.MainAxisAlignment.CENTER,
+                                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                            ),
                         ),
                     ],
                     spacing=7 if mobile else 8,

@@ -7,10 +7,10 @@ def section_title(kicker: str, title: str, subtitle: str | None = None) -> ft.Co
     """Monta o titulo padrao de cada secao da landing."""
 
     # Lista base: texto pequeno de categoria + titulo principal.
-    controls: list[ft.Control] = [
-        ft.Text(kicker.upper(), size=20, weight=ft.FontWeight.W_700, color=theme.BLUE),
-        ft.Text(title, style=theme.title_style(24), text_align=ft.TextAlign.CENTER),
-    ]
+    controls: list[ft.Control] = []
+    if kicker:
+        controls.append(ft.Text(kicker.upper(), size=20, weight=ft.FontWeight.W_700, color=theme.BLUE))
+    controls.append(ft.Text(title, style=theme.title_style(24), text_align=ft.TextAlign.CENTER))
 
     # Subtitulo opcional. Use quando quiser explicar melhor a secao.
     if subtitle:
