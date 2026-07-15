@@ -1,4 +1,4 @@
-# Publicar SmartLoop Landing
+# Publicar SmartLuup Landing
 
 ## Opcao recomendada: Render
 

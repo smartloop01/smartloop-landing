@@ -20,14 +20,14 @@ CONTACT = ContactConfig()
 # "nome", "descricao", "categoria", "link" e "imagem".
 PROJECTS = [
     {
-        "nome": "SmartLoop ERP",
+        "nome": "SmartLuup ERP",
         "descricao": "Sistema de gestão empresarial com paineis, indicadores e fluxos integrados.",
         "categoria": "Web",
         "link": "https://site.com",
         "imagem": "ERP",
     },
     {
-        "nome": "SmartLoop RPA",
+        "nome": "SmartLuup RPA",
         "descricao": "Automacão de processos repetitivos para operacões financeiras e administrativas.",
         "categoria": "Automacão",
         "link": "https://site.com",
@@ -46,7 +46,7 @@ PROJECTS = [
 # Dados extras das paginas demonstrativas de cada projeto.
 # A chave principal precisa ter o mesmo nome usado em PROJECTS["nome"].
 PROJECT_DEMOS = {
-    "SmartLoop ERP": {
+    "SmartLuup ERP": {
         "link": "demo:erp",
         "demo_titulo": "ERP inteligente para gestão empresarial",
         "demo_resumo": "Uma central para acompanhar clientes, vendas, financeiro, estoque e indicadores em tempo real.",
@@ -67,7 +67,7 @@ PROJECT_DEMOS = {
             "Gestão centralizada",
         ],
     },
-    "SmartLoop RPA": {
+    "SmartLuup RPA": {
         "link": "demo:rpa",
         "demo_titulo": "Robos para automatizar processos repetitivos",
         "demo_resumo": "Automacões para executar tarefas operacionais, integrar sistemas e reduzir tempo perdido em rotinas manuais.",
@@ -124,7 +124,7 @@ TESTIMONIALS = [
     {
         "nome": "Cristina Costa",
         "cargo": "Diretora de Operacões",
-        "texto": "A SmartLoop automatizou rotinas criticas e liberou nosso time para pensar no crescimento.",
+        "texto": "A SmartLuup automatizou rotinas criticas e liberou nosso time para pensar no crescimento.",
         "iniciais": "CC",
     },
     {

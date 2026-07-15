@@ -16,10 +16,10 @@ def main(page: ft.Page):
     """Configura a janela/pagina principal e carrega a landing page."""
 
     # Titulo que aparece na aba do navegador.
-    page.title = "SmartLoop | Tecnologia Inteligente"
+    page.title = "SmartLuup | Tecnologia Inteligente"
 
     # Icone usado na janela/app. A tela de abertura web usa o index.html.
-    page.window.icon = "iniciosite.png"
+    page.window.icon = "logonovosmartluup.png"
 
     # Configuracoes gerais de aparencia e comportamento da pagina.
     page.theme_mode = ft.ThemeMode.DARK

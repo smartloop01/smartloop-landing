@@ -1,4 +1,4 @@
-# Configurar Supabase na SmartLoop
+# Configurar Supabase na SmartLuup
 
 ## 1. Criar a tabela
 

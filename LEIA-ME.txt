@@ -28,7 +28,7 @@ config.py
 - Projetos, depoimentos, email, WhatsApp e redes sociais.
 - Edite este arquivo para trocar links e informacoes sem mexer no layout.
 
-logo-smartloop.jpg
+logonovosmartluup.png
 - Logo usado na landing page.
 
 requirements.txt

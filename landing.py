@@ -11,7 +11,7 @@ import flet as ft
 import theme
 from config import CONTACT, PROJECTS, TESTIMONIALS
 from controls import GlassCard, GlowButton, max_width, section_title
-from ai_agent_service import ask_smartloop_ai
+from ai_agent_service import ask_smartluup_ai
 from lead_service import init_db, save_lead
 
 
@@ -44,8 +44,43 @@ METRICS = [
 ]
 
 
+# Textos exibidos quando o visitante clica nas politicas do rodape.
+PRIVACY_POLICIES = {
+    "Politica de Privacidade": [
+        "Coletamos apenas os dados necessarios para entender sua necessidade, responder contatos e preparar propostas comerciais.",
+        "Os dados enviados em formularios podem incluir nome, telefone, email, empresa, segmento, prazo, orcamento e detalhes do projeto.",
+        "As informacoes nao sao vendidas. Elas sao usadas pela SmartLuup para atendimento, relacionamento comercial e melhoria dos servicos.",
+    ],
+    "Termos de Uso": [
+        "Ao usar este site, voce concorda em fornecer informacoes verdadeiras nos formularios e utilizar os canais de contato de forma adequada.",
+        "Os conteudos, textos, identidade visual e demonstracoes da SmartLuup sao protegidos e nao devem ser copiados sem autorizacao.",
+        "As informacoes apresentadas no site tem finalidade institucional e comercial, podendo ser atualizadas a qualquer momento.",
+    ],
+    "Politica de Cookies": [
+        "Este site pode utilizar cookies e tecnologias semelhantes para melhorar a experiencia de navegacao e entender o uso da pagina.",
+        "Cookies podem ajudar a lembrar preferencias, medir desempenho e apoiar campanhas de marketing.",
+        "Voce pode bloquear cookies nas configuracoes do navegador, mas algumas funcoes podem ficar limitadas.",
+    ],
+    "Conformidade com a LGPD": [
+        "A SmartLuup respeita a Lei Geral de Protecao de Dados Pessoais e trata dados com finalidade clara e acesso limitado.",
+        "O titular dos dados pode solicitar confirmacao, correcao, exclusao ou informacoes sobre o tratamento dos seus dados pessoais.",
+        "As solicitacoes relacionadas a dados pessoais podem ser feitas pelos canais oficiais de contato da SmartLuup.",
+    ],
+    "Seguranca da Informacao": [
+        "Aplicamos boas praticas para proteger os dados recebidos, reduzindo riscos de acesso indevido, perda ou uso inadequado.",
+        "O acesso as informacoes de leads e clientes deve ser restrito a pessoas autorizadas e relacionado ao atendimento comercial.",
+        "Recomendamos que dados sensiveis nao sejam enviados pelo formulario inicial sem necessidade.",
+    ],
+    "Solicitacoes de dados pessoais": [
+        "Para solicitar acesso, correcao, exclusao ou esclarecimentos sobre seus dados pessoais, entre em contato pelo email oficial da SmartLuup.",
+        "Inclua seu nome, canal de contato e uma breve descricao da solicitacao para agilizar o atendimento.",
+        "A SmartLuup analisara a solicitacao e respondera conforme os prazos e criterios previstos na LGPD.",
+    ],
+}
+
+
 class LandingPage:
-    """Monta toda a landing page one page da SmartLoop."""
+    """Monta toda a landing page one page da SmartLuup."""
 
     def __init__(self, page: ft.Page):
         """Prepara estado, banco, depoimentos e botao flutuante do agente."""
@@ -68,7 +103,7 @@ class LandingPage:
         self.agent_messages: list[tuple[str, str]] = [
             (
                 "agent",
-                "Ola! Sou o agente da SmartLoop. Pergunte sobre RPA, Sites, Apps, IA, ERP ou Projetos sob Medida.",
+                "Ola! Sou o agente da SmartLuup. Pergunte sobre RPA, Sites, Apps, IA, ERP ou Projetos sob Medida.",
             )
         ]
 
@@ -77,7 +112,7 @@ class LandingPage:
 
         # Campo de texto usado pelo visitante para perguntar ao agente.
         self.agent_input = ft.TextField(
-            hint_text="Pergunte sobre a SmartLoop...",
+            hint_text="Pergunte sobre a SmartLuup...",
             color=theme.WHITE,
             border_color=ft.Colors.with_opacity(0.35, theme.WHITE),
             focused_border_color=theme.GREEN,
@@ -88,10 +123,10 @@ class LandingPage:
             max_lines=3,
         )
 
-        # Botao flutuante verde que abre o agente SmartLoop.
+        # Botao flutuante verde que abre o agente SmartLuup.
         self.page.floating_action_button = ft.FloatingActionButton(
             icon=ft.Icons.SMART_TOY,
-            tooltip="Agente IA SmartLoop",
+            tooltip="Agente IA SmartLuup",
             bgcolor=theme.GREEN,
             foreground_color=theme.WHITE,
             on_click=lambda _: self.show_ai_agent(),
@@ -110,7 +145,7 @@ class LandingPage:
             gradient=ft.LinearGradient(
                 begin=ft.Alignment(-1, -1),
                 end=ft.Alignment(1, 1),
-                colors=[theme.BG, "#08090C", "#0B090F", theme.BG],
+                colors=[theme.BG, "#0C0F1A", "#120E1B", theme.BG],
             ),
             content=ft.Column(
                 [
@@ -147,7 +182,7 @@ class LandingPage:
             width=logo_width,
             height=logo_height,
             content=ft.Image(
-                src="logo_bom.png.png",
+                src="logonovosmartluup.png",
                 width=logo_width,
                 height=logo_height,
                 fit=ft.BoxFit.CONTAIN,
@@ -311,10 +346,10 @@ class LandingPage:
             expand=True,
             padding=10,
             border_radius=ft.BorderRadius(
-                top_left=0,
-                top_right=0,
-                bottom_left=5,
-                bottom_right=5,
+                top_left=12,
+                top_right=12,
+                bottom_left=12,
+                bottom_right=12,
             ),
             bgcolor=ft.Colors.with_opacity(0.10, theme.WHITE),
             content=ft.Column(
@@ -334,10 +369,10 @@ class LandingPage:
             expand=True,
             padding=16,
             border_radius=ft.BorderRadius(
-                top_left=0,
-                top_right=0,
-                bottom_left=5,
-                bottom_right=5,
+                top_left=12,
+                top_right=12,
+                bottom_left=12,
+                bottom_right=12,
             ),
             bgcolor=ft.Colors.with_opacity(
                 0.08, theme.WHITE),
@@ -407,25 +442,16 @@ class LandingPage:
                     bottom_left=0,
                     bottom_right=0,
                 ),
-                gradient=ft.RadialGradient(
-                    center=ft.Alignment(0, 0),
-                    radius=0,
-                    colors=[ft.Colors.with_opacity(0.5,
-                                theme.BLUE),
-                                ft.Colors.with_opacity(0.5,
-                                theme.PURPLE),
-                                "#0950C2"],
-                ),
                 content=ft.Stack(
                     [
                         ft.Container(),
                         ft.Container(
                             content=ft.Image(
-                                src="logo.png.png",
-                                width=460,
-                                height=585,
-                                fit=ft.BoxFit.COVER,
-                                border_radius=32,
+                                src="erp-dashboard-smartluup.png",
+                                width=920,
+                                height=400,
+                                fit=ft.BoxFit.CONTAIN,
+                                border_radius=18,
                             ),
                             alignment=ft.Alignment(0, 0),
                             expand=True,
@@ -442,9 +468,9 @@ class LandingPage:
                    
                     content=ft.Column(
                         [
-                            section_title("Sobre", "A SmartLoop pensa Tecnologia como Resultado"),
+                            section_title("Sobre", "A SmartLuup pensa Tecnologia como Resultado"),
                             ft.Text(
-                                "A SmartLoop Desenvolve Soluções Tecnologicas que Eliminam Tarefas Repetitivas, Reduzem Custos Operacionais e Aumentam a Produtividade Através da Automacão, Inteligência Artificial e Desenvolvimento de Software sob Medida.",
+                                "A SmartLuup Desenvolve Soluções Tecnologicas que Eliminam Tarefas Repetitivas, Reduzem Custos Operacionais e Aumentam a Produtividade Através da Automacão, Inteligência Artificial e Desenvolvimento de Software sob Medida.",
                                 color=theme.WHITE,
                                 style=theme.body_style(17),
                                 text_align=ft.TextAlign.CENTER,
@@ -493,10 +519,10 @@ class LandingPage:
             alignment=ft.Alignment(0, 0),
             padding=ft.Padding(2, 0, 0, 2),
             border_radius=ft.BorderRadius(
-                    top_left=1,
-                    top_right=1,
-                    bottom_left=1,
-                    bottom_right=1,
+                    top_left=14,
+                    top_right=14,
+                    bottom_left=14,
+                    bottom_right=14,
                 ),
             gradient=theme.gradient([theme.BLUE, theme.BLUE, theme.BLUE]),
             content=ft.Column(
@@ -560,7 +586,7 @@ class LandingPage:
         return ft.Container(
             expand=True,
             padding=14,
-            border_radius=8,
+            border_radius=14,
             bgcolor=ft.Colors.with_opacity(0.10, theme.WHITE),
             border=ft.Border.all(1, ft.Colors.with_opacity(0.14, theme.WHITE)),
             content=ft.Column(
@@ -579,7 +605,7 @@ class LandingPage:
         return ft.Container(
             expand=True,
             padding=18,
-            border_radius=8,
+            border_radius=14,
             bgcolor=ft.Colors.with_opacity(0.08, theme.WHITE),
             border=ft.Border.all(1, ft.Colors.with_opacity(0.14, theme.WHITE)),
             content=ft.Column(
@@ -613,7 +639,7 @@ class LandingPage:
         return ft.Container(
             height=300,
             padding=18,
-            border_radius=8,
+            border_radius=14,
             gradient=theme.gradient(["#07111F", "#0950C2", "#111827"]),
             border=ft.Border.all(1, ft.Colors.with_opacity(0.16, theme.WHITE)),
             content=ft.Column(
@@ -627,13 +653,13 @@ class LandingPage:
                     ),
                     ft.Container(
                         expand=True,
-                        border_radius=8,
+                        border_radius=14,
                         bgcolor=ft.Colors.with_opacity(0.14, theme.WHITE),
                         content=ft.Column(
                             [
                                 ft.Icon(ft.Icons.DASHBOARD_CUSTOMIZE, size=58, color=theme.WHITE),
                                 ft.Text(project["demo_titulo"], size=18, weight=ft.FontWeight.W_800, color=theme.WHITE, text_align=ft.TextAlign.CENTER),
-                                ft.Text("Demo conceitual SmartLoop", size=13, color=ft.Colors.with_opacity(0.82, theme.WHITE)),
+                                ft.Text("Demo conceitual SmartLuup", size=13, color=ft.Colors.with_opacity(0.82, theme.WHITE)),
                             ],
                             alignment=ft.MainAxisAlignment.CENTER,
                             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
@@ -751,7 +777,7 @@ class LandingPage:
             content=ft.Container(
                     width=bubble_width,
                     padding=8,
-                    border_radius=8,
+                    border_radius=16,
                     clip_behavior=ft.ClipBehavior.HARD_EDGE,
                     bgcolor=theme.GREEN if is_user else ft.Colors.with_opacity(0.10, theme.WHITE),
                     border=None if is_user else ft.Border.all(1, ft.Colors.with_opacity(0.16, theme.WHITE)),
@@ -799,7 +825,7 @@ class LandingPage:
             self.refresh_agent_messages()
             self.page.update()
 
-            answer = await asyncio.to_thread(ask_smartloop_ai, question)
+            answer = await asyncio.to_thread(ask_smartluup_ai, question)
             self.agent_messages[-1] = ("agent", answer)
             self.refresh_agent_messages()
             self.page.update()
@@ -818,7 +844,7 @@ class LandingPage:
                 width=panel_width,
                 height=panel_height,
                 padding=10 if compact_agent else 18,
-                border_radius=14,
+                border_radius=20,
                 bgcolor="#0F172A",
                 border=ft.Border.all(1, ft.Colors.with_opacity(0.22, theme.WHITE)),
                 content=ft.Column(
@@ -827,7 +853,7 @@ class LandingPage:
                             [
                                 ft.Icon(ft.Icons.SMART_TOY, color=theme.GREEN, size=24),
                                 ft.Text(
-                                    "Agente SmartLoop",
+                                    "Agente SmartLuup",
                                     color=theme.WHITE,
                                     size=18 if compact_agent else 22,
                                     weight=ft.FontWeight.W_800,
@@ -842,7 +868,7 @@ class LandingPage:
                             width=message_area_width,
                             expand=True,
                             padding=8 if compact_agent else 12,
-                            border_radius=8,
+                            border_radius=16,
                             clip_behavior=ft.ClipBehavior.HARD_EDGE,
                             bgcolor=ft.Colors.with_opacity(0.06, theme.WHITE),
                             content=ft.Container(
@@ -1032,6 +1058,83 @@ class LandingPage:
             ),
         )
 
+    def show_policy_modal(self, title: str):
+        """Abre um painel com o conteudo da politica escolhida no rodape."""
+
+        mobile = self.is_mobile()
+        policy_items = PRIVACY_POLICIES.get(title, [])
+
+        def close_policy(_=None):
+            if policy_overlay in self.page.overlay:
+                self.page.overlay.remove(policy_overlay)
+            self.page.update()
+
+        policy_overlay = ft.Container(
+            expand=True,
+            bgcolor=ft.Colors.with_opacity(0.84, "#020617"),
+            alignment=ft.Alignment(0, 0),
+            padding=14 if mobile else 24,
+            content=ft.Container(
+                width=345 if mobile else 760,
+                height=560 if mobile else None,
+                padding=18 if mobile else 26,
+                border_radius=18,
+                bgcolor="#0F172A",
+                border=ft.Border.all(1, ft.Colors.with_opacity(0.22, theme.WHITE)),
+                shadow=theme.soft_shadow(theme.BLUE, opacity=0.14, blur=34),
+                content=ft.Column(
+                    [
+                        ft.Row(
+                            [
+                                ft.Icon(ft.Icons.SHIELD, size=24, color=theme.GREEN),
+                                ft.Text(
+                                    title,
+                                    size=22 if mobile else 28,
+                                    weight=ft.FontWeight.W_800,
+                                    color=theme.WHITE,
+                                    expand=True,
+                                ),
+                                ft.IconButton(ft.Icons.CLOSE, icon_color=theme.WHITE, on_click=close_policy),
+                            ],
+                            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                        ),
+                        ft.Divider(color=ft.Colors.with_opacity(0.16, theme.WHITE)),
+                        ft.Column(
+                            [
+                                ft.Row(
+                                    [
+                                        ft.Icon(ft.Icons.CHECK_CIRCLE, size=18, color=theme.GREEN),
+                                        ft.Text(
+                                            item,
+                                            color=theme.WHITE,
+                                            size=14 if mobile else 16,
+                                            expand=True,
+                                        ),
+                                    ],
+                                    spacing=10,
+                                    vertical_alignment=ft.CrossAxisAlignment.START,
+                                )
+                                for item in policy_items
+                            ],
+                            spacing=14,
+                            scroll=ft.ScrollMode.AUTO,
+                        ),
+                        ft.Text(
+                            "Conteudo informativo. Para uma solicitacao formal, use os canais oficiais da SmartLuup.",
+                            color=ft.Colors.with_opacity(0.70, theme.WHITE),
+                            size=12 if mobile else 13,
+                            text_align=ft.TextAlign.CENTER,
+                        ),
+                    ],
+                    spacing=14,
+                    scroll=ft.ScrollMode.AUTO,
+                ),
+            ),
+        )
+
+        self.page.overlay.append(policy_overlay)
+        self.page.update()
+
     def footer(self) -> ft.Control:
         """Monta o rodape com links externos e contatos."""
 
@@ -1043,21 +1146,50 @@ class LandingPage:
             ("LinkedIn", CONTACT.linkedin),
             ("GitHub", CONTACT.github),
         ]
+
+        def policy_button(label: str) -> ft.Container:
+            return ft.Container(
+                width=310 if mobile else None,
+                padding=ft.Padding(12, 8, 12, 8),
+                border_radius=12,
+                bgcolor=ft.Colors.with_opacity(0.05, theme.WHITE),
+                border=ft.Border.all(1, ft.Colors.with_opacity(0.12, theme.WHITE)),
+                on_click=lambda _, policy_title=label: self.show_policy_modal(policy_title),
+                content=ft.Row(
+                    [
+                        ft.Container(
+                            width=28,
+                            alignment=ft.Alignment(0, 0),
+                            content=ft.Icon(ft.Icons.PRIVACY_TIP, size=18, color=theme.GREEN),
+                        ),
+                        ft.Text(
+                            label,
+                            color=theme.WHITE,
+                            size=13 if mobile else 14,
+                            expand=True,
+                            text_align=ft.TextAlign.LEFT,
+                        ),
+                    ],
+                    spacing=8,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            )
+
         return ft.Container(
             padding=ft.Padding(0, 20 if mobile else 28, 0, 26 if mobile else 34),
             content=max_width(
                 ft.Column(
                     [
-                        ft.Text("SmartLoop", size=26, weight=ft.FontWeight.W_800,
+                        ft.Text("SmartLuup", size=26, weight=ft.FontWeight.W_800,
                                  color=theme.WHITE, text_align=ft.TextAlign.CENTER),
                         ft.Text("Automação • IA • Sites • Aplicativos",
                                  color=theme.WHITE, text_align=ft.TextAlign.CENTER,
                                  width=310 if mobile else None),
-                        ft.Text("© 2024 SmartLoop. Todos os direitos reservados",
+                        ft.Text("© 2024 SmartLuup. Todos os direitos reservados",
                                  color=theme.WHITE, text_align=ft.TextAlign.CENTER,
                                  width=310 if mobile else None),
                         ft.Text(
-                            "Desenvolvido por SmartLoop. Valter Lira. Tecnologia Python",
+                            "Desenvolvido por SmartLuup. Valter Lira. Tecnologia Python",
                             color=theme.WHITE,
                             text_align=ft.TextAlign.CENTER,
                             width=310 if mobile else None,
@@ -1073,6 +1205,34 @@ class LandingPage:
                                 selectable=False,
                                 shrink_wrap=True,
                             ),
+                        ),
+                        ft.Container(height=8 if mobile else 14),
+                        ft.Text(
+                            "🔒 Segurança e Privacidade",
+                            size=17 if mobile else 20,
+                            weight=ft.FontWeight.W_800,
+                            color=theme.WHITE,
+                            text_align=ft.TextAlign.CENTER,
+                        ),
+                        ft.Column(
+                            [policy_button(label) for label in PRIVACY_POLICIES.keys()],
+                            spacing=8,
+                            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                        )
+                        if mobile
+                        else ft.ResponsiveRow(
+                            [
+                                ft.Container(
+                                    col={"xs": 12, "sm": 6, "md": 4},
+                                    alignment=ft.Alignment(0, 0),
+                                    padding=4,
+                                    content=policy_button(label),
+                                )
+                                for label in PRIVACY_POLICIES.keys()
+                            ],
+                            spacing=6,
+                            run_spacing=6,
+                            alignment=ft.MainAxisAlignment.CENTER,
                         ),
                     ],
                     spacing=7 if mobile else 8,
@@ -1231,7 +1391,7 @@ class LandingPage:
                             alignment=ft.MainAxisAlignment.END,
                         ),
                         ft.Text(
-                            "Preencha as informações para a SmartLoop entender seu Negócio e entrar em contato.",
+                            "Preencha as informações para a SmartLuup entender seu Negócio e entrar em contato.",
                             color=theme.WHITE,
                             size=14,
                         ),
@@ -1433,7 +1593,7 @@ class LandingPage:
                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                         ),
                         ft.Text(
-                            "Preencha as informações para a SmartLoop entender seu negócio e entrar em contato.",
+                            "Preencha as informações para a SmartLuup entender seu negócio e entrar em contato.",
                             color=theme.WHITE,
                             size=14,
                         ),

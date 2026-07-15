@@ -12,7 +12,7 @@ $watchedFiles = @(
     "lead_service.py"
 )
 
-function Stop-SmartLoopServer {
+function Stop-SmartLuupServer {
     $connections = Get-NetTCPConnection -LocalPort $port -ErrorAction SilentlyContinue
     $processIds = $connections | Select-Object -ExpandProperty OwningProcess -Unique
 
@@ -27,8 +27,8 @@ function Stop-SmartLoopServer {
     }
 }
 
-function Start-SmartLoopServer {
-    Stop-SmartLoopServer
+function Start-SmartLuupServer {
+    Stop-SmartLuupServer
     $script:serverProcess = Start-Process `
         -FilePath "python" `
         -ArgumentList "main.py" `
@@ -37,7 +37,7 @@ function Start-SmartLoopServer {
 
     Start-Sleep -Seconds 2
     Write-Host ""
-    Write-Host "SmartLoop rodando:" -ForegroundColor Green
+    Write-Host "SmartLuup rodando:" -ForegroundColor Green
     Write-Host "PC:     http://127.0.0.1:$port" -ForegroundColor Cyan
     Write-Host "iPhone: http://192.168.0.110:$port" -ForegroundColor Cyan
     Write-Host ""
@@ -61,7 +61,7 @@ function Get-LatestWriteTime {
 }
 
 $lastWriteTime = Get-LatestWriteTime
-Start-SmartLoopServer
+Start-SmartLuupServer
 
 try {
     while ($true) {
@@ -71,11 +71,11 @@ try {
         if ($currentWriteTime -gt $lastWriteTime) {
             $lastWriteTime = $currentWriteTime
             Write-Host ""
-            Write-Host "Arquivo salvo. Reiniciando SmartLoop..." -ForegroundColor Yellow
-            Start-SmartLoopServer
+            Write-Host "Arquivo salvo. Reiniciando SmartLuup..." -ForegroundColor Yellow
+            Start-SmartLuupServer
         }
     }
 }
 finally {
-    Stop-SmartLoopServer
+    Stop-SmartLuupServer
 }

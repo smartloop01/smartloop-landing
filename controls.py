@@ -51,10 +51,10 @@ class GlowButton(ft.Container):
         # Aparencia padrao do botao.
         self.padding = ft.Padding(22, 22, 22, 22)
         self.border_radius = ft.BorderRadius(
-            top_left=1,
-            top_right=1,
-            bottom_left=1,
-            bottom_right=1,
+            top_left=14,
+            top_right=14,
+            bottom_left=14,
+            bottom_right=14,
         )
 
         # Botoes primarios usam gradiente; secundarios usam fundo translucido.
@@ -103,10 +103,10 @@ class GlassCard(ft.Container):
 
         # Bordas do card. Alterar estes valores muda o arredondamento.
         self.border_radius = ft.BorderRadius(
-            top_left=1,
-            top_right=1,
-            bottom_left=1,
-            bottom_right=1,
+            top_left=18,
+            top_right=18,
+            bottom_left=18,
+            bottom_right=18,
         )
 
         # Fundo e gradiente criam o efeito glassmorphism.

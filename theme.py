@@ -1,7 +1,7 @@
 import flet as ft
 
 
-# Cores principais da identidade visual da SmartLoop.
+# Cores principais da identidade visual da SmartLuup.
 BG = "#0F172A"
 PANEL = "#1E293B"
 BLUE = "#3B82F6"

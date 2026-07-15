@@ -1,6 +1,6 @@
 {
-  "name": "SmartLoop",
-  "short_name": "SmartLoop",
+  "name": "SmartLuup",
+  "short_name": "SmartLuup",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0F172A",
@@ -10,12 +10,12 @@
   "prefer_related_applications": false,
   "icons": [
     {
-      "src": "smartloop-splash.png",
+      "src": "smartluup-splash.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "smartloop-splash.png",
+      "src": "smartluup-splash.png",
       "sizes": "512x512",
       "type": "image/png"
     }
