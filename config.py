@@ -123,12 +123,12 @@ for project in PROJECTS:
 TESTIMONIALS = [
     {
         "nome": "Cristina Costa",
-        "cargo": "Diretora de Operacões",
+        "cargo": "Diretora de Operações",
         "texto": "A SmartLuup automatizou rotinas criticas e liberou nosso time para pensar no crescimento.",
         "iniciais": "CC",
     },
     {
-        "nome": "Raphael Mendes",
+        "nome": "Raphael Hassan",
         "cargo": "CEO, NovaLog",
         "texto": "O projeto ficou elegante, rapido e muito alinhado com os processos da empresa.",
         "iniciais": "RM",
@@ -136,7 +136,7 @@ TESTIMONIALS = [
     {
         "nome": "Cecilia Torres",
         "cargo": "Head de Produto",
-        "texto": "Ganhamos previsibilidade, integracão e uma experiencia digital muito superior.",
+        "texto": "Ganhamos previsibilidade, integração e uma experiência digital muito superior.",
         "iniciais": "CT",
     },
 ]

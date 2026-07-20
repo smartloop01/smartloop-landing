@@ -47,35 +47,185 @@ METRICS = [
 # Textos exibidos quando o visitante clica nas politicas do rodape.
 PRIVACY_POLICIES = {
     "Politica de Privacidade": [
-        "Coletamos apenas os dados necessarios para entender sua necessidade, responder contatos e preparar propostas comerciais.",
-        "Os dados enviados em formularios podem incluir nome, telefone, email, empresa, segmento, prazo, orcamento e detalhes do projeto.",
-        "As informacoes nao sao vendidas. Elas sao usadas pela SmartLuup para atendimento, relacionamento comercial e melhoria dos servicos.",
+        "A SmartLuup respeita a sua privacidade e está comprometida com a proteção dos dados pessoais de seus usuários, clientes e visitantes. Esta Política de Privacidade explica como coletamos, utilizamos, armazenamos e protegemos suas informações.\n\n"
+
+"1."" Coleta de Informações\n\n"
+
+"Podemos coletar as seguintes informações:\n\n"
+
+"Nome completo;"
+"E-mail;"
+"Telefone;"
+"Nome da empresa;"
+"Cargo ou função;"
+"Informações fornecidas por formulários de contato;"
+"Dados de navegação, endereço IP, cookies e informações do dispositivo.\n\n"
+"2." "Uso das Informações\n\n"
+
+"As informações coletadas poderão ser utilizadas para:\n\n"
+
+"Prestar nossos serviços;"
+"Entrar em contato com clientes e interessados;"
+"Enviar propostas comerciais;"
+"Melhorar a experiência do usuário;"
+"Personalizar conteúdos e funcionalidades;"
+"Cumprir obrigações legais e regulatórias;"
+"Garantir a segurança dos sistemas e serviços.\n\n"
+"3." "Compartilhamento de Dados\n\n"
+
+"A SmartLuup não vende informações pessoais. Os dados poderão ser compartilhados apenas com:\n\n"
+
+"Prestadores de serviços necessários para a operação da plataforma;"
+"Autoridades governamentais quando exigido por lei;"
+"Parceiros tecnológicos responsáveis pela hospedagem, processamento e segurança dos dados.\n\n"
+"4." "Armazenamento e Segurança\n\n"
+
+"Adotamos medidas técnicas e organizacionais para proteger os dados contra acesso não autorizado, perda, alteração ou divulgação indevida.\n\n"
+
+"Os dados são armazenados em ambientes seguros e monitorados, utilizando tecnologias modernas de proteção da informação.\n\n"
+
+"5." "Cookies\n\n"
+
+"Utilizamos cookies para melhorar a navegação, analisar o tráfego do site e oferecer uma experiência personalizada.\n\n"
+
+"O usuário pode desabilitar os cookies nas configurações do navegador, ciente de que algumas funcionalidades poderão ser afetadas.\n\n"
+
+"6." "Direitos do Titular dos Dados\n\n"
+
+"Nos termos da Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018), o usuário poderá solicitar:\n\n"
+
+"Confirmação da existência de tratamento de dados;"
+"Acesso aos dados pessoais;"
+"Correção de dados incompletos ou incorretos;"
+"Exclusão dos dados quando aplicável;"
+"Portabilidade dos dados;"
+"Revogação do consentimento.\n\n"
+"7." "Retenção dos Dados\n\n"
+
+"Os dados serão mantidos pelo período necessário para cumprir as finalidades descritas nesta Política ou conforme exigido por lei.\n\n"
+
+"8." "Alterações desta Política\n\n"
+
+"Esta Política de Privacidade poderá ser atualizada periodicamente. As alterações entrarão em vigor após sua publicação em nosso site.\n\n"
+
+"9." "Contato\n\n"
+
+"Em caso de dúvidas sobre esta Política de Privacidade ou sobre o tratamento de dados pessoais, entre em contato:\n\n"
+
+"SmartLuup Tecnologia\n"
+"E-mail: contato@smartluup.com.br\n"
+"Site: www.smartluup.com.br\n\n"
+
+"Ao utilizar nossos serviços, você concorda com os termos desta Política de Privacidade.",
     ],
     "Termos de Uso": [
-        "Ao usar este site, voce concorda em fornecer informacoes verdadeiras nos formularios e utilizar os canais de contato de forma adequada.",
-        "Os conteudos, textos, identidade visual e demonstracoes da SmartLuup sao protegidos e nao devem ser copiados sem autorizacao.",
-        "As informacoes apresentadas no site tem finalidade institucional e comercial, podendo ser atualizadas a qualquer momento.",
+        "Última atualização: 20 de julho de 2026\n\n"
+
+        "Bem-vindo à SmartLuup.\n Ao acessar ou utilizar nossos serviços, você concorda com os presentes Termos de Uso.\n\n"
+
+        "1. Objetivo\n\n"
+
+"A SmartLuup oferece soluções de tecnologia, automação de processos (RPA), desenvolvimento de sistemas, aplicativos, websites, inteligência artificial, CRM e outras soluções corporativas.\n\n"
+
+"2. Cadastro\n\n"
+
+"Ao fornecer informações em formulários ou plataformas da SmartLuup, o usuário declara que os dados informados são verdadeiros e atualizados.\n\n"
+
+"3. Uso Permitido\n\n"
+
+"O usuário compromete-se a utilizar os serviços de forma lícita, ética e em conformidade com a legislação vigente.\n\n"
+
+"É proibido:\n\n"
+
+"Utilizar os serviços para atividades ilegais;\n"
+"Tentar acessar sistemas sem autorização;\n"
+"Distribuir códigos maliciosos;\n"
+"Violar direitos de terceiros.\n\n"
+"4. Propriedade Intelectual\n\n"
+
+"Todo conteúdo disponibilizado pela SmartLuup, incluindo marcas, logotipos, sistemas, códigos, layouts, documentos e materiais institucionais, é protegido pela legislação aplicável.\n\n"
+
+"5. Limitação de Responsabilidade\n\n"
+
+"A SmartLuup emprega esforços razoáveis para manter seus sistemas disponíveis e seguros, mas não garante funcionamento ininterrupto ou livre de falhas.\n\n"
+
+"6. Alterações"
+
+"Estes Termos poderão ser modificados a qualquer momento, sendo as alterações publicadas em nossos canais oficiais.\n\n"
+
+"7. Legislação Aplicável\n\n"
+
+"Os presentes Termos são regidos pelas leis da República Federativa do Brasil.",
     ],
     "Politica de Cookies": [
-        "Este site pode utilizar cookies e tecnologias semelhantes para melhorar a experiencia de navegacao e entender o uso da pagina.",
-        "Cookies podem ajudar a lembrar preferencias, medir desempenho e apoiar campanhas de marketing.",
-        "Voce pode bloquear cookies nas configuracoes do navegador, mas algumas funcoes podem ficar limitadas.",
+        "Última atualização: 20 de julho de 2026\n\n"
+
+        "A SmartLuup utiliza cookies e tecnologias semelhantes para melhorar a experiência de navegação dos usuários.\n\n"
+
+        "O que são Cookies?\n\n"
+
+"Cookies são pequenos arquivos armazenados no dispositivo do usuário durante a navegação em nosso site.\n\n"
+
+"Finalidades\n\n"
+
+"Utilizamos cookies para:\n\n"
+
+"* Garantir o funcionamento adequado do site;\n"
+"* Melhorar desempenho e segurança;\n"
+"* Realizar análises estatísticas;\n"
+"* Personalizar conteúdos e experiências.\n"
+"* Tipos de Cookies\n"
+"* Cookies Essenciais\n"
+
+"Necessários para o funcionamento do site.\n\n"
+
+"Cookies de Desempenho\n\n"
+
+"Permitem analisar a utilização do site para melhorias contínuas.\n\n"
+
+"Cookies Funcionais\n\n"
+
+"Memorizam preferências do usuário.\n\n"
+
+"Cookies de Marketing\n\n"
+
+"Podem ser utilizados para campanhas e divulgação de serviços.\n"
+
+"Gerenciamento"
     ],
     "Conformidade com a LGPD": [
-        "A SmartLuup respeita a Lei Geral de Protecao de Dados Pessoais e trata dados com finalidade clara e acesso limitado.",
-        "O titular dos dados pode solicitar confirmacao, correcao, exclusao ou informacoes sobre o tratamento dos seus dados pessoais.",
-        "As solicitacoes relacionadas a dados pessoais podem ser feitas pelos canais oficiais de contato da SmartLuup.",
+        # LGPD – Lei Geral de Proteção de Dados
+
+"A SmartLuup está comprometida com a proteção dos dados pessoais e com o cumprimento da Lei nº 13.709/2018 (LGPD).\n\n"
+
+## Seus Direitos
+
+"Você pode solicitar:\n\n"
+
+"* Confirmação do tratamento de dados;\n"
+"* Acesso aos seus dados pessoais;\n"
+"* Correção de informações incorretas;\n"
+"* Anonimização ou exclusão dos dados quando aplicável;\n"
+"* Portabilidade dos dados;\n"
+"* Revogação do consentimento;\n"
+"* Informações sobre compartilhamento de dados.\n"
+
+## Como Solicitar
+
+"As solicitações podem ser encaminhadas para:\n\n"
+
+"**E-mail:**\n [privacidade@smartluup.com.br]\n(mailto:privacidade@smartluup.com.br)\n\n"
+
+## Segurança
+
+"A SmartLuup adota medidas administrativas, técnicas e organizacionais para proteger os dados pessoais contra acessos não autorizados, perda, alteração ou divulgação indevida.\n\n"
+
+## Compromisso
+
+"Nos comprometemos a tratar os dados pessoais com transparência, responsabilidade e respeito aos direitos dos titulares.",
+
     ],
-    "Seguranca da Informacao": [
-        "Aplicamos boas praticas para proteger os dados recebidos, reduzindo riscos de acesso indevido, perda ou uso inadequado.",
-        "O acesso as informacoes de leads e clientes deve ser restrito a pessoas autorizadas e relacionado ao atendimento comercial.",
-        "Recomendamos que dados sensiveis nao sejam enviados pelo formulario inicial sem necessidade.",
-    ],
-    "Solicitacoes de dados pessoais": [
-        "Para solicitar acesso, correcao, exclusao ou esclarecimentos sobre seus dados pessoais, entre em contato pelo email oficial da SmartLuup.",
-        "Inclua seu nome, canal de contato e uma breve descricao da solicitacao para agilizar o atendimento.",
-        "A SmartLuup analisara a solicitacao e respondera conforme os prazos e criterios previstos na LGPD.",
-    ],
+    
 }
 
 
@@ -1120,7 +1270,7 @@ class LandingPage:
                             scroll=ft.ScrollMode.AUTO,
                         ),
                         ft.Text(
-                            "Conteudo informativo. Para uma solicitacao formal, use os canais oficiais da SmartLuup.",
+                            "Conteúdo informativo. Para uma solicitação formal, use os canais oficiais da SmartLuup.",
                             color=ft.Colors.with_opacity(0.70, theme.WHITE),
                             size=12 if mobile else 13,
                             text_align=ft.TextAlign.CENTER,
