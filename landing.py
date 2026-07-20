@@ -268,17 +268,44 @@ class LandingPage:
             focused_border_color=theme.GREEN,
             hint_style=ft.TextStyle(color=ft.Colors.with_opacity(0.65, theme.WHITE)),
             border_radius=8,
-            multiline=True,
-            min_lines=1,
-            max_lines=3,
+            multiline=False,
         )
 
-        # Botao flutuante verde que abre o agente SmartLuup.
+        # Mascote flutuante que abre o agente SmartLuup.
         self.page.floating_action_button = ft.FloatingActionButton(
-            icon=ft.Icons.SMART_TOY,
+            content=ft.Container(
+                padding=ft.Padding(14, 10, 16, 10),
+                content=ft.Row(
+                    [
+                        ft.Container(
+                            width=38,
+                            height=38,
+                            border_radius=99,
+                            bgcolor=ft.Colors.with_opacity(0.18, theme.WHITE),
+                            alignment=ft.Alignment(0, 0),
+                            content=ft.Icon(ft.Icons.SMART_TOY, size=24, color=theme.WHITE),
+                        ),
+                        ft.Column(
+                            [
+                                ft.Text("Agente", size=12, weight=ft.FontWeight.W_700, color=theme.WHITE),
+                                ft.Text("SmartLuup", size=15, weight=ft.FontWeight.W_900, color=theme.WHITE),
+                            ],
+                            spacing=0,
+                            alignment=ft.MainAxisAlignment.CENTER,
+                        ),
+                    ],
+                    spacing=9,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                ),
+            ),
             tooltip="Agente IA SmartLuup",
             bgcolor=theme.GREEN,
             foreground_color=theme.WHITE,
+            width=168,
+            height=62,
+            shape=ft.RoundedRectangleBorder(radius=31),
+            elevation=12,
+            hover_elevation=18,
             on_click=lambda _: self.show_ai_agent(),
         )
 
@@ -918,27 +945,23 @@ class LandingPage:
         compact_agent = page_width < 1200
         panel_width = 300 if compact_agent else 520
         messages_content_width = panel_width - (52 if compact_agent else 84)
-        bubble_width = messages_content_width - 18 if compact_agent else 420
-        wrapped_text = "\n".join(textwrap.wrap(text, width=24 if compact_agent else 54))
+        bubble_width = messages_content_width - 10 if compact_agent else 420
+        wrapped_text = "\n".join(textwrap.wrap(text, width=30 if compact_agent else 54))
         return ft.Container(
             width=messages_content_width,
             alignment=ft.Alignment(1, 0) if is_user else ft.Alignment(-1, 0),
-            clip_behavior=ft.ClipBehavior.HARD_EDGE,
             content=ft.Container(
                     width=bubble_width,
-                    padding=8,
+                    padding=10,
                     border_radius=16,
-                    clip_behavior=ft.ClipBehavior.HARD_EDGE,
                     bgcolor=theme.GREEN if is_user else ft.Colors.with_opacity(0.10, theme.WHITE),
                     border=None if is_user else ft.Border.all(1, ft.Colors.with_opacity(0.16, theme.WHITE)),
                     content=ft.Text(
                         wrapped_text,
-                        width=bubble_width - 24,
+                        width=bubble_width - 20,
                         color=theme.WHITE,
                         size=13 if compact_agent else 14,
                         no_wrap=False,
-                        max_lines=10,
-                        overflow=ft.TextOverflow.CLIP,
                     ),
                 ),
         )
@@ -980,6 +1003,8 @@ class LandingPage:
             self.refresh_agent_messages()
             self.page.update()
 
+        self.agent_input.on_submit = send_message
+
         def close_agent(_=None):
             if agent_overlay in self.page.overlay:
                 self.page.overlay.remove(agent_overlay)
@@ -1019,11 +1044,9 @@ class LandingPage:
                             expand=True,
                             padding=8 if compact_agent else 12,
                             border_radius=16,
-                            clip_behavior=ft.ClipBehavior.HARD_EDGE,
                             bgcolor=ft.Colors.with_opacity(0.06, theme.WHITE),
                             content=ft.Container(
                                 width=messages_content_width,
-                                clip_behavior=ft.ClipBehavior.HARD_EDGE,
                                 content=self.agent_messages_column,
                             ),
                         ),

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 class ContactConfig:
     email: str = "smartloopgmail@gmail.com"
     whatsapp: str = "https://wa.me/5516991327011?text=Ola%2C%20quero%20um%20orcamento%20para%20minha%20empresa"
-    instagram: str = "https://www.instagram.com/smartloop_1"
+    instagram: str = "https://www.instagram.com/smartluup"
     linkedin: str = "https://www.linkedin.com/in/valter-lira"
     github: str = "https://github.com/smartloop01"
 
