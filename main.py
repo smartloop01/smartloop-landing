@@ -21,9 +21,9 @@ def main(page: ft.Page):
     page.window.min_width = 390
     page.window.min_height = 760
     page.fonts = {
-        "VT323": "https://raw.githubusercontent.com/google/fonts/main/ofl/vt323/VT323-Regular.ttf"
+        "Manrope": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/Manrope%5Bwght%5D.ttf"
     }
-    page.theme = ft.Theme(font_family="VT323", color_scheme_seed=theme.BLUE)
+    page.theme = ft.Theme(font_family="Manrope", color_scheme_seed=theme.BLUE)
 
     landing = LandingPage(page)
     page.add(landing.build())
