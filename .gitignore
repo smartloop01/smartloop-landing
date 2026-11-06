@@ -3,3 +3,4 @@ MAlonzo/**
 __pycache__/
 *.pyc
 .env
+leads.db

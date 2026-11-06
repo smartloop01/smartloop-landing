@@ -30,12 +30,11 @@ def main(page: ft.Page):
     page.window.min_width = 390
     page.window.min_height = 760
 
-    # Fonte principal do site. Os numeros indicam pesos: normal, semibold,
-    # negrito, extra bold e black.
+    # Fonte principal do site, carregada como arquivo TTF pelo Flet.
     page.fonts = {
-        "Inter": "https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap"
+        "Manrope": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/Manrope%5Bwght%5D.ttf"
     }
-    page.theme = ft.Theme(font_family="Inter", color_scheme_seed=theme.BLUE)
+    page.theme = ft.Theme(font_family="Manrope", color_scheme_seed=theme.BLUE)
 
     # Cria a pagina de landing, adiciona na tela e inicia animacoes.
     landing = LandingPage(page)
@@ -45,10 +44,10 @@ def main(page: ft.Page):
 
 
 if __name__ == "__main__":
-    # No Render a porta vem pela variavel PORT. Localmente usa 8088.
+    # Na hospedagem a porta vem pela variavel PORT. Localmente usa 8088.
     port = int(os.getenv("PORT", "8088"))
 
-    # No Render precisa aceitar conexoes externas em 0.0.0.0.
+    # Na hospedagem precisa aceitar conexoes externas em 0.0.0.0.
     # Localmente fica em 127.0.0.1.
     host = os.getenv("HOST", "0.0.0.0" if os.getenv("PORT") else "127.0.0.1")
 

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import sqlite3
 from datetime import datetime
 from pathlib import Path
@@ -50,7 +51,7 @@ def init_db() -> None:
 
 
 def save_lead(data: dict[str, str]) -> int:
-    """Salva o lead no Supabase quando configurado; senao usa SQLite local."""
+    """Salva no Supabase; em desenvolvimento, permite fallback SQLite."""
 
     print("Preparando dados do lead...")
 
@@ -69,12 +70,17 @@ def save_lead(data: dict[str, str]) -> int:
         "criado_em": datetime.now().isoformat(timespec="seconds"),
     }
 
+    require_supabase = os.getenv("REQUIRE_SUPABASE") == "1"
     if supabase_is_configured():
         try:
             return save_lead_supabase(fields)
         except Exception as error:
             print(f"Erro ao salvar no Supabase: {error}")
+            if require_supabase:
+                raise RuntimeError("Banco de leads indisponivel. Tente novamente mais tarde.") from error
             print("Usando SQLite local como backup.")
+    elif require_supabase:
+        raise RuntimeError("Banco de leads nao configurado. Tente novamente mais tarde.")
 
     print(f"Tentando salvar lead em {DB_PATH}")
     print("Preparando tabela de leads...")
