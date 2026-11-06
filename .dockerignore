@@ -1,0 +1,12 @@
+.git
+.gitignore
+.env
+.venv
+__pycache__
+*.pyc
+*.db
+*.db-shm
+*.db-wal
+KOYEB_SETUP.md
+CLOUD_RUN_SETUP.md
+*.log
